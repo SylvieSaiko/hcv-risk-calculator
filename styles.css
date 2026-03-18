@@ -25,37 +25,7 @@ body {
     radial-gradient(circle at top right, rgba(12, 122, 106, 0.1), transparent 24rem),
     linear-gradient(180deg, #f6faf8, var(--bg) 38%, var(--bg-accent));
   font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
-}
-
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  inset: auto;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.8;
-}
-
-body::before {
-  top: 5rem;
-  right: 6vw;
-  width: 18rem;
-  height: 18rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(12, 122, 106, 0.12), transparent 68%);
-  filter: blur(2px);
-  animation: driftFloat 18s ease-in-out infinite;
-}
-
-body::after {
-  bottom: 4rem;
-  left: 4vw;
-  width: 14rem;
-  height: 14rem;
-  border-radius: 38% 62% 57% 43% / 42% 43% 57% 58%;
-  background: radial-gradient(circle, rgba(92, 132, 122, 0.1), transparent 70%);
-  animation: driftFloat 22s ease-in-out infinite reverse;
+  overflow-x: clip;
 }
 
 .page-shell {
@@ -79,7 +49,6 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 24px;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
   opacity: 0;
   transform: translateY(24px);
   transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -617,15 +586,6 @@ button:hover {
   }
 }
 
-@keyframes driftFloat {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) rotate(0deg);
-  }
-  50% {
-    transform: translate3d(0, -10px, 0) rotate(5deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -634,11 +594,6 @@ button:hover {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  body::before,
-  body::after {
-    display: none;
   }
 
   .hero-copy,
