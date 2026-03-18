@@ -77,8 +77,15 @@
   }
 
   function clearResult() {
+    refs.resultContent.classList.remove("is-entering");
     refs.resultContent.classList.add("hidden");
     refs.emptyState.classList.remove("hidden");
+  }
+
+  function animateResultReveal() {
+    refs.resultContent.classList.remove("is-entering");
+    void refs.resultContent.offsetWidth;
+    refs.resultContent.classList.add("is-entering");
   }
 
   function compileTree(node) {
@@ -250,6 +257,7 @@
     refs.decileCount.textContent = formatNumber(Number(stats.n));
     renderDecileBar(decile);
     renderDecileTable(decile);
+    animateResultReveal();
   }
 
   function readInputs() {
@@ -368,5 +376,8 @@
   inputFields.forEach((fieldName) => {
     refs[fieldName].addEventListener("input", handleFieldInput);
     refs[fieldName].addEventListener("change", handleFieldInput);
+  });
+  requestAnimationFrame(() => {
+    document.body.classList.add("is-ready");
   });
 })();
