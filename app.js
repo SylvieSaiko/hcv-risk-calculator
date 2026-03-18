@@ -30,6 +30,13 @@
   };
 
   const PRIORITY_TEST_THRESHOLD = 0.02;
+  const inputFields = [
+    "birthYear",
+    "sex",
+    "birthplace",
+    "ethnicity",
+    "incomePir"
+  ];
 
   function formatNumber(value) {
     return new Intl.NumberFormat("en-US").format(value);
@@ -54,6 +61,24 @@
 
   function setStatus(message) {
     refs.statusMessage.textContent = message || "";
+    refs.statusMessage.classList.toggle("is-visible", Boolean(message));
+  }
+
+  function clearFieldErrors() {
+    inputFields.forEach((fieldName) => {
+      refs[fieldName].classList.remove("is-invalid");
+    });
+  }
+
+  function markFieldError(fieldName) {
+    if (refs[fieldName]) {
+      refs[fieldName].classList.add("is-invalid");
+    }
+  }
+
+  function clearResult() {
+    refs.resultContent.classList.add("hidden");
+    refs.emptyState.classList.remove("hidden");
   }
 
   function compileTree(node) {
@@ -239,24 +264,24 @@
 
   function validateInputs(input) {
     if (!Number.isFinite(input.birthYear) || input.birthYear < 1900 || input.birthYear > 2100) {
-      return "Enter a valid birth year.";
+      return { message: "Enter a valid birth year.", field: "birthYear" };
     }
     if (!input.sex) {
-      return "Select the patient's sex.";
+      return { message: "Enter a valid sex.", field: "sex" };
     }
     if (!input.birthplace) {
-      return "Select whether the patient was born in the USA.";
+      return { message: "Enter a valid birthplace.", field: "birthplace" };
     }
     if (!input.ethnicity) {
-      return "Select the patient's race/ethnicity.";
+      return { message: "Enter a valid race/ethnicity.", field: "ethnicity" };
     }
     if (!Number.isFinite(input.incomePir)) {
-      return "Enter the income-to-poverty ratio.";
+      return { message: "Enter a valid income-to-poverty ratio.", field: "incomePir" };
     }
     if (input.incomePir < 0 || input.incomePir > 5) {
-      return "Income-to-poverty ratio must be between 0 and 5.";
+      return { message: "Enter a valid income-to-poverty ratio between 0 and 5.", field: "incomePir" };
     }
-    return "";
+    return null;
   }
 
   function scorePatient(input) {
@@ -284,9 +309,16 @@
 
   function resetForm() {
     refs.form.reset();
+    clearFieldErrors();
     setStatus("");
-    refs.resultContent.classList.add("hidden");
-    refs.emptyState.classList.remove("hidden");
+    clearResult();
+  }
+
+  function handleFieldInput(event) {
+    event.target.classList.remove("is-invalid");
+    if (refs.statusMessage.textContent) {
+      setStatus("");
+    }
   }
 
   if (!model || !model.scoring || !Array.isArray(model.scoring.trees)) {
@@ -296,7 +328,7 @@
 
   const compiledTrees = model.scoring.trees.map(compileTree);
 
-  refs.modelName.textContent = "attempt_5 demographic XGB";
+  refs.modelName.textContent = "DEMOGRAPHIC XGB";
   refs.cohortSize.textContent = formatNumber(Number(model.cohort.size));
   refs.validationAuroc.textContent = model.reference_validation && model.reference_validation.auroc
     ? Number(model.reference_validation.auroc).toFixed(3)
@@ -305,12 +337,16 @@
 
   refs.form.addEventListener("submit", (event) => {
     event.preventDefault();
+    clearFieldErrors();
     setStatus("");
 
     const input = readInputs();
     const error = validateInputs(input);
     if (error) {
-      setStatus(error);
+      clearResult();
+      setStatus(error.message);
+      markFieldError(error.field);
+      refs[error.field].focus();
       return;
     }
 
@@ -319,6 +355,7 @@
     const stats = getDecileStats(decile);
 
     if (!stats) {
+      clearResult();
       setStatus("Unable to map this score to a cohort decile.");
       return;
     }
@@ -328,4 +365,8 @@
 
   refs.resetButton.addEventListener("click", resetForm);
   refs.exampleButton.addEventListener("click", loadExample);
+  inputFields.forEach((fieldName) => {
+    refs[fieldName].addEventListener("input", handleFieldInput);
+    refs[fieldName].addEventListener("change", handleFieldInput);
+  });
 })();

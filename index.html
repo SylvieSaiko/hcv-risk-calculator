@@ -10,16 +10,29 @@
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Attempt 5 XGBoost Deployment</p>
-          <h1>Physician-facing HCV infection risk and decile calculator</h1>
+          <p class="eyebrow">XGBoost Deployment</p>
+          <h1>HCV infection risk and decile calculator</h1>
           <p class="hero-text">
-            This page scores a single patient locally from the reconstructed
-            5-variable XGBoost model using birth year, sex, birthplace,
-            race/ethnicity, and income-to-poverty ratio, then applies a
-            calibrated risk mapping for bedside use. The modeled outcome is
-            evidence of current or past HCV infection, not confirmed active
-            viremia.
+            This page scores a single patient locally from the 5-variable
+            XGBoost model using birth year, sex, birthplace, race/ethnicity,
+            and income-to-poverty ratio, then applies a calibrated risk
+            mapping for bedside use. The modeled outcome is evidence of
+            current or past HCV infection, not confirmed active viremia.
           </p>
+          <div class="hero-highlights" aria-label="Calculator highlights">
+            <div class="hero-highlight">
+              <span class="hero-highlight-label">Inputs</span>
+              <strong>5 demographic variables</strong>
+            </div>
+            <div class="hero-highlight">
+              <span class="hero-highlight-label">Privacy</span>
+              <strong>Runs locally in browser</strong>
+            </div>
+            <div class="hero-highlight">
+              <span class="hero-highlight-label">Use</span>
+              <strong>Supports screening, not diagnosis</strong>
+            </div>
+          </div>
         </div>
         <div class="hero-meta" id="modelMeta">
           <div class="meta-card">
@@ -41,7 +54,7 @@
         <section class="panel form-panel">
           <div class="panel-heading">
             <p class="panel-kicker">Patient Inputs</p>
-            <h2>Enter demographic information</h2>
+            <h2>Patient demographics</h2>
           </div>
 
           <form id="riskForm" novalidate>
@@ -90,12 +103,14 @@
             <div class="button-row">
               <button class="primary-button" type="submit">Calculate risk</button>
               <button class="secondary-button" type="button" id="resetButton">Reset</button>
-              <button class="ghost-button" type="button" id="exampleButton">Load example</button>
+              <button class="ghost-button" type="button" id="exampleButton">Use example patient</button>
             </div>
+
+            <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
           </form>
 
           <div class="notes-block">
-            <p class="notes-title">Clinical notes</p>
+            <p class="notes-title">Use notes</p>
             <ul class="notes-list">
               <li>This score estimates evidence of current or past HCV infection, meaning the patient may be currently infected or may have been infected previously.</li>
               <li>A positive status screen still needs standard HCV testing workflow, typically antibody testing with confirmatory HCV RNA testing.</li>
@@ -108,12 +123,12 @@
         <section class="panel result-panel" id="resultPanel">
           <div class="panel-heading">
             <p class="panel-kicker">Model Output</p>
-            <h2>Risk summary</h2>
+            <h2>Risk estimate</h2>
           </div>
 
           <div class="result-stack" id="resultStack">
             <div class="empty-state" id="emptyState">
-              <p>Enter all five variables to estimate current or past HCV infection risk and locate the patient within the model deciles.</p>
+              <p>Enter the five variables to estimate infection risk and place the patient within the model deciles.</p>
             </div>
 
             <div class="result-content hidden" id="resultContent">
@@ -176,8 +191,6 @@
               </div>
             </div>
           </div>
-
-          <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
         </section>
       </main>
     </div>
