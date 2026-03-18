@@ -1,8 +1,8 @@
 window.HCV_XGB_MODEL = 
 {
   "model_name": "attempt_5_demographic_xgb_full_cohort",
-  "outcome": "Broad HCV positivity",
-  "exported_at": "2026-03-18 16:25:42 CST",
+  "outcome": "Evidence of current or past HCV infection",
+  "exported_at": "2026-03-18 17:52:38 CST",
   "cohort": {
     "size": 69196,
     "positive_cases": 967,

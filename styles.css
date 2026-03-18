@@ -283,6 +283,56 @@ button:hover {
   line-height: 1.6;
 }
 
+.recommendation-card {
+  margin-bottom: 1rem;
+  padding: 1rem 1.05rem;
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(12, 122, 106, 0.12), rgba(255, 255, 255, 0.76));
+  border: 1px solid rgba(12, 122, 106, 0.18);
+}
+
+.recommendation-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
+.recommendation-title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.recommendation-badge {
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(12, 122, 106, 0.14);
+  color: #0c6a5e;
+}
+
+.recommendation-badge.is-priority {
+  background: rgba(157, 61, 49, 0.12);
+  color: var(--danger);
+}
+
+.recommendation-text {
+  margin: 0.7rem 0 0;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.recommendation-footnote {
+  margin: 0.7rem 0 0;
+  line-height: 1.5;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .decile-bar {
   display: grid;
   grid-template-columns: repeat(10, minmax(0, 1fr));

@@ -19,12 +19,17 @@
     riskValue: document.getElementById("riskValue"),
     decileValue: document.getElementById("decileValue"),
     resultNarrative: document.getElementById("resultNarrative"),
+    recommendationTitle: document.getElementById("recommendationTitle"),
+    recommendationBadge: document.getElementById("recommendationBadge"),
+    recommendationText: document.getElementById("recommendationText"),
     decileMeanRisk: document.getElementById("decileMeanRisk"),
     decileObservedRisk: document.getElementById("decileObservedRisk"),
     decileCount: document.getElementById("decileCount"),
     decileBar: document.getElementById("decileBar"),
     decileTableBody: document.getElementById("decileTableBody")
   };
+
+  const PRIORITY_TEST_THRESHOLD = 0.02;
 
   function formatNumber(value) {
     return new Intl.NumberFormat("en-US").format(value);
@@ -130,7 +135,48 @@
             ? "This patient falls near the middle of the modeled cohort."
             : "This patient falls below most of the modeled cohort.";
 
-    return `${positionText} Estimated broad HCV positivity risk is ${formatPercent(probability, 2)}, corresponding to decile ${decile} of 10. In the source cohort, observed prevalence in this decile was ${formatPercent(Number(stats.observed_prevalence), 2)}.`;
+    return `${positionText} Estimated risk of current or past HCV infection is ${formatPercent(probability, 2)}, corresponding to decile ${decile} of 10. In the source cohort, observed prevalence for this infection-history outcome in the same decile was ${formatPercent(Number(stats.observed_prevalence), 2)}.`;
+  }
+
+  function buildTestingRecommendation(probability, birthYear) {
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - birthYear;
+    const isAdult = Number.isFinite(age) && age >= 18;
+    const isPriority = probability >= PRIORITY_TEST_THRESHOLD;
+
+    if (isAdult && isPriority) {
+      return {
+        title: "Encourage HCV status testing now",
+        badge: "Higher-priority",
+        isPriority,
+        text: `This patient meets CDC's age range for universal one-time adult screening and also exceeds the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)} estimated risk.`
+      };
+    }
+
+    if (isAdult) {
+      return {
+        title: "Encourage at least one HCV status test",
+        badge: "Routine adult screening",
+        isPriority,
+        text: `CDC recommends at least one lifetime HCV screening test for adults 18 and older. This patient's score is below the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)}, but testing is still encouraged.`
+      };
+    }
+
+    if (isPriority) {
+      return {
+        title: "Consider HCV status testing",
+        badge: "Risk-based",
+        isPriority,
+        text: `This patient is outside the standard adult universal-screening age band but exceeds the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)} estimated risk. Use clinician judgment and exposure history.`
+      };
+    }
+
+    return {
+      title: "Use age and exposure context",
+      badge: "Risk-based",
+      isPriority,
+      text: "This patient is outside the standard adult universal-screening age band and does not exceed the calculator's higher-priority flag. Consider testing based on exposures, pregnancy, or other clinical risk factors."
+    };
   }
 
   function renderDecileBar(activeDecile) {
@@ -163,12 +209,17 @@
     });
   }
 
-  function showResult(probability, decile, stats) {
+  function showResult(probability, decile, stats, input) {
+    const recommendation = buildTestingRecommendation(probability, input.birthYear);
     refs.emptyState.classList.add("hidden");
     refs.resultContent.classList.remove("hidden");
     refs.riskValue.textContent = formatPercent(probability, 2);
     refs.decileValue.textContent = `${decile}/10`;
     refs.resultNarrative.textContent = buildNarrative(probability, decile, stats);
+    refs.recommendationTitle.textContent = recommendation.title;
+    refs.recommendationBadge.textContent = recommendation.badge;
+    refs.recommendationBadge.classList.toggle("is-priority", recommendation.isPriority);
+    refs.recommendationText.textContent = recommendation.text;
     refs.decileMeanRisk.textContent = formatPercent(Number(stats.predicted_risk_mean), 2);
     refs.decileObservedRisk.textContent = formatPercent(Number(stats.observed_prevalence), 2);
     refs.decileCount.textContent = formatNumber(Number(stats.n));
@@ -272,7 +323,7 @@
       return;
     }
 
-    showResult(probability, decile, stats);
+    showResult(probability, decile, stats, input);
   });
 
   refs.resetButton.addEventListener("click", resetForm);

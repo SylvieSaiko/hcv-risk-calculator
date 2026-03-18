@@ -302,7 +302,7 @@ if (file.exists(perf_path)) {
 
 artifact <- list(
   model_name = "attempt_5_demographic_xgb_full_cohort",
-  outcome = "Broad HCV positivity",
+  outcome = "Evidence of current or past HCV infection",
   exported_at = format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"),
   cohort = list(
     size = nrow(dat),

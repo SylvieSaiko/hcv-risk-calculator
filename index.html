@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HCV Risk Decile Calculator</title>
+    <title>HCV Infection Risk Calculator</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -11,12 +11,14 @@
       <header class="hero">
         <div class="hero-copy">
           <p class="eyebrow">Attempt 5 XGBoost Deployment</p>
-          <h1>Physician-facing HCV risk and decile calculator</h1>
+          <h1>Physician-facing HCV infection risk and decile calculator</h1>
           <p class="hero-text">
             This page scores a single patient locally from the reconstructed
             5-variable XGBoost model using birth year, sex, birthplace,
             race/ethnicity, and income-to-poverty ratio, then applies a
-            calibrated risk mapping for bedside use.
+            calibrated risk mapping for bedside use. The modeled outcome is
+            evidence of current or past HCV infection, not confirmed active
+            viremia.
           </p>
         </div>
         <div class="hero-meta" id="modelMeta">
@@ -95,7 +97,8 @@
           <div class="notes-block">
             <p class="notes-title">Clinical notes</p>
             <ul class="notes-list">
-              <li>The outcome modeled here is broad HCV positivity, not a diagnosis of active untreated infection.</li>
+              <li>This score estimates evidence of current or past HCV infection, meaning the patient may be currently infected or may have been infected previously.</li>
+              <li>A positive status screen still needs standard HCV testing workflow, typically antibody testing with confirmatory HCV RNA testing.</li>
               <li>The calculator runs entirely in the browser after the page is opened.</li>
               <li>Income should be entered as poverty-income ratio, not raw annual dollars.</li>
             </ul>
@@ -110,13 +113,13 @@
 
           <div class="result-stack" id="resultStack">
             <div class="empty-state" id="emptyState">
-              <p>Enter all five variables to calculate risk and locate the patient within the model deciles.</p>
+              <p>Enter all five variables to estimate current or past HCV infection risk and locate the patient within the model deciles.</p>
             </div>
 
             <div class="result-content hidden" id="resultContent">
               <div class="risk-headline">
                 <div>
-                  <p class="result-label">Calibrated broad HCV risk</p>
+                  <p class="result-label">Calibrated risk of current or past HCV infection</p>
                   <p class="risk-value" id="riskValue">--</p>
                 </div>
                 <div class="decile-chip">
@@ -126,6 +129,20 @@
               </div>
 
               <p class="result-text" id="resultNarrative"></p>
+
+              <div class="recommendation-card" id="recommendationCard">
+                <div class="recommendation-head">
+                  <div>
+                    <p class="result-label">HCV status testing</p>
+                    <p class="recommendation-title" id="recommendationTitle">--</p>
+                  </div>
+                  <div class="recommendation-badge" id="recommendationBadge">--</div>
+                </div>
+                <p class="recommendation-text" id="recommendationText"></p>
+                <p class="recommendation-footnote">
+                  CDC recommends at least one lifetime HCV screening test for adults 18 and older, regardless of this score. The calculator's higher-priority flag uses a pragmatic threshold of 2.0% estimated risk and is not itself a formal guideline cutoff.
+                </p>
+              </div>
 
               <div class="decile-bar" id="decileBar" aria-label="Risk decile scale"></div>
 
