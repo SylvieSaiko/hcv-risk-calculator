@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HCV Risk Decile Calculator</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Attempt 5 XGBoost Deployment</p>
+          <h1>Physician-facing HCV risk and decile calculator</h1>
+          <p class="hero-text">
+            This page scores a single patient locally from the reconstructed
+            5-variable XGBoost model using birth year, sex, birthplace,
+            race/ethnicity, and income-to-poverty ratio, then applies a
+            calibrated risk mapping for bedside use.
+          </p>
+        </div>
+        <div class="hero-meta" id="modelMeta">
+          <div class="meta-card">
+            <span class="meta-label">Model</span>
+            <strong id="modelName">Loading...</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Cohort Size</span>
+            <strong id="cohortSize">Loading...</strong>
+          </div>
+          <div class="meta-card">
+            <span class="meta-label">Validation AUROC</span>
+            <strong id="validationAuroc">Loading...</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel form-panel">
+          <div class="panel-heading">
+            <p class="panel-kicker">Patient Inputs</p>
+            <h2>Enter demographic information</h2>
+          </div>
+
+          <form id="riskForm" novalidate>
+            <div class="field-grid">
+              <label class="field">
+                <span>Birth year</span>
+                <input id="birthYear" name="birthYear" type="number" inputmode="numeric" min="1900" max="2100" placeholder="1960" required />
+              </label>
+
+              <label class="field">
+                <span>Sex</span>
+                <select id="sex" name="sex" required>
+                  <option value="">Select sex</option>
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Birthplace</span>
+                <select id="birthplace" name="birthplace" required>
+                  <option value="">Select birthplace</option>
+                  <option value="USA">Born in USA</option>
+                  <option value="Not_USA">Not born in USA</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>Race/ethnicity</span>
+                <select id="ethnicity" name="ethnicity" required>
+                  <option value="">Select ethnicity</option>
+                  <option value="White">White</option>
+                  <option value="Black">Black</option>
+                  <option value="Hispanic">Hispanic</option>
+                  <option value="Asian/Other">Asian / Other</option>
+                </select>
+              </label>
+
+              <label class="field field-wide">
+                <span>Income-to-poverty ratio (PIR)</span>
+                <input id="incomePir" name="incomePir" type="number" inputmode="decimal" min="0" max="5" step="0.01" placeholder="2.00" required />
+                <small>Model input is NHANES PIR, capped to the observed 0 to 5 range.</small>
+              </label>
+            </div>
+
+            <div class="button-row">
+              <button class="primary-button" type="submit">Calculate risk</button>
+              <button class="secondary-button" type="button" id="resetButton">Reset</button>
+              <button class="ghost-button" type="button" id="exampleButton">Load example</button>
+            </div>
+          </form>
+
+          <div class="notes-block">
+            <p class="notes-title">Clinical notes</p>
+            <ul class="notes-list">
+              <li>The outcome modeled here is broad HCV positivity, not a diagnosis of active untreated infection.</li>
+              <li>The calculator runs entirely in the browser after the page is opened.</li>
+              <li>Income should be entered as poverty-income ratio, not raw annual dollars.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="panel result-panel" id="resultPanel">
+          <div class="panel-heading">
+            <p class="panel-kicker">Model Output</p>
+            <h2>Risk summary</h2>
+          </div>
+
+          <div class="result-stack" id="resultStack">
+            <div class="empty-state" id="emptyState">
+              <p>Enter all five variables to calculate risk and locate the patient within the model deciles.</p>
+            </div>
+
+            <div class="result-content hidden" id="resultContent">
+              <div class="risk-headline">
+                <div>
+                  <p class="result-label">Calibrated broad HCV risk</p>
+                  <p class="risk-value" id="riskValue">--</p>
+                </div>
+                <div class="decile-chip">
+                  <span>Decile</span>
+                  <strong id="decileValue">--</strong>
+                </div>
+              </div>
+
+              <p class="result-text" id="resultNarrative"></p>
+
+              <div class="decile-bar" id="decileBar" aria-label="Risk decile scale"></div>
+
+              <div class="metric-grid">
+                <div class="metric-card">
+                  <span class="metric-label">Mean predicted risk in this decile</span>
+                  <strong id="decileMeanRisk">--</strong>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-label">Observed prevalence in this decile</span>
+                  <strong id="decileObservedRisk">--</strong>
+                </div>
+                <div class="metric-card">
+                  <span class="metric-label">Cohort members in this decile</span>
+                  <strong id="decileCount">--</strong>
+                </div>
+              </div>
+
+              <div class="table-shell">
+                <table class="decile-table">
+                  <thead>
+                    <tr>
+                      <th>Decile</th>
+                      <th>Mean predicted risk</th>
+                      <th>Observed prevalence</th>
+                      <th>N</th>
+                    </tr>
+                  </thead>
+                  <tbody id="decileTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./model-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+  </html>
