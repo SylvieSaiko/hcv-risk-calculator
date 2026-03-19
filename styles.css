@@ -233,11 +233,24 @@ select {
   width: 100%;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.82);
-  color: var(--ink);
+  color: rgba(22, 34, 43, 0.9);
   border-radius: 16px;
   padding: 0.9rem 0.95rem;
   min-height: 3.2rem;
   transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease, background 120ms ease;
+}
+
+input::placeholder {
+  color: rgba(95, 108, 116, 0.55);
+  font-style: italic;
+}
+
+select:invalid {
+  color: rgba(95, 108, 116, 0.72);
+}
+
+select option {
+  color: var(--ink);
 }
 
 input:focus,
