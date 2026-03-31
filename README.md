@@ -1,4 +1,4 @@
-# attempt_5 XGB website
+# XGB website
 
 This folder contains a physician-facing static calculator for the demographic XGBoost model.
 
