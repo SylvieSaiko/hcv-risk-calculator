@@ -157,17 +157,23 @@
     return (model.deciles.stats || []).find((entry) => Number(entry.decile) === Number(decile));
   }
 
+  function getDecileReferenceLabel() {
+    return model.deciles && model.deciles.reference_label
+      ? model.deciles.reference_label
+      : "reference validation cohort";
+  }
+
   function buildNarrative(probability, decile, stats) {
     const positionText =
       decile >= 9
-        ? "This patient falls into the upper end of the modeled cohort."
+        ? "This patient falls into the upper end of the paper-aligned risk distribution."
         : decile >= 7
-          ? "This patient falls above the middle of the modeled cohort."
+          ? "This patient falls above the middle of the paper-aligned risk distribution."
           : decile >= 4
-            ? "This patient falls near the middle of the modeled cohort."
-            : "This patient falls below most of the modeled cohort.";
+            ? "This patient falls near the middle of the paper-aligned risk distribution."
+            : "This patient falls below most of the paper-aligned risk distribution.";
 
-    return `${positionText} Estimated risk of current or past HCV infection is ${formatPercent(probability, 2)}, corresponding to decile ${decile} of 10. In the source cohort, observed prevalence for this infection-history outcome in the same decile was ${formatPercent(Number(stats.observed_prevalence), 2)}.`;
+    return `${positionText} Estimated calibrated risk of current or past HCV infection is ${formatPercent(probability, 2)}, corresponding to decile ${decile} of 10. In the ${getDecileReferenceLabel()}, observed prevalence for this infection-history outcome in the same decile was ${formatPercent(Number(stats.observed_prevalence), 2)}.`;
   }
 
   function buildTestingRecommendation(probability, birthYear) {
@@ -336,8 +342,10 @@
 
   const compiledTrees = model.scoring.trees.map(compileTree);
 
-  refs.modelName.textContent = "DEMOGRAPHIC XGB";
-  refs.cohortSize.textContent = formatNumber(Number(model.cohort.size));
+  refs.modelName.textContent = model.display_name || "FIXED-CYCLE DEMOGRAPHIC XGB";
+  refs.cohortSize.textContent = model.reference_validation && model.reference_validation.reference_set_size
+    ? formatNumber(Number(model.reference_validation.reference_set_size))
+    : formatNumber(Number(model.cohort.size));
   refs.validationAuroc.textContent = model.reference_validation && model.reference_validation.auroc
     ? Number(model.reference_validation.auroc).toFixed(3)
     : "N/A";

@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HCV Infection Risk Calculator</title>
-    <link rel="stylesheet" href="./styles.css?v=20260319-1" />
+    <link rel="stylesheet" href="./styles.css?v=20260405-1" />
   </head>
   <body>
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">XGBoost Deployment</p>
+          <p class="eyebrow">Fixed-Cycle Primary Analysis</p>
           <h1>HCV infection risk and decile calculator</h1>
           <p class="hero-text">
             This page scores a single patient locally from the 5-variable
-            XGBoost model using birth year, sex, birthplace, race/ethnicity,
-            and income-to-poverty ratio, then applies a calibrated risk
-            mapping for bedside use. The modeled outcome is evidence of
-            current or past HCV infection, not confirmed active viremia.
+            XGBoost model used for the paper's fixed-cycle primary analysis
+            using birth year, sex, birthplace, race/ethnicity, and
+            income-to-poverty ratio. Risk is displayed on the paper-aligned
+            calibrated probability scale for evidence of current or past HCV
+            infection, not confirmed active viremia.
           </p>
           <div class="hero-highlights" aria-label="Calculator highlights">
             <div class="hero-highlight">
@@ -25,12 +26,12 @@
               <strong>5 demographic variables</strong>
             </div>
             <div class="hero-highlight">
-              <span class="hero-highlight-label">Privacy</span>
-              <strong>Runs locally in browser</strong>
+              <span class="hero-highlight-label">Calibration</span>
+              <strong>Training-derived Platt scaling</strong>
             </div>
             <div class="hero-highlight">
-              <span class="hero-highlight-label">Use</span>
-              <strong>Supports screening, not diagnosis</strong>
+              <span class="hero-highlight-label">Reference</span>
+              <strong>Fixed-cycle validation deciles</strong>
             </div>
           </div>
         </div>
@@ -40,11 +41,11 @@
             <strong id="modelName">Loading...</strong>
           </div>
           <div class="meta-card">
-            <span class="meta-label">Cohort Size</span>
+            <span class="meta-label">Validation Cohort</span>
             <strong id="cohortSize">Loading...</strong>
           </div>
           <div class="meta-card">
-            <span class="meta-label">Validation AUROC</span>
+            <span class="meta-label">Primary AUROC</span>
             <strong id="validationAuroc">Loading...</strong>
           </div>
         </div>
@@ -109,10 +110,11 @@
             <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
           </form>
 
-          <div class="notes-block">
+            <div class="notes-block">
             <p class="notes-title">Use notes</p>
             <ul class="notes-list">
               <li>This score estimates evidence of current or past HCV infection, meaning the patient may be currently infected or may have been infected previously.</li>
+              <li>Calibration and decile context are anchored to the paper's fixed-cycle split (training n = 48,434; validation n = 20,762).</li>
               <li>A positive status screen still needs standard HCV testing workflow, typically antibody testing with confirmatory HCV RNA testing.</li>
               <li>The calculator runs entirely in the browser after the page is opened.</li>
               <li>Income should be entered as poverty-income ratio, not raw annual dollars.</li>
@@ -128,7 +130,7 @@
 
           <div class="result-stack" id="resultStack">
             <div class="empty-state" id="emptyState">
-              <p>Enter the five variables to estimate infection risk and place the patient within the model deciles.</p>
+              <p>Enter the five variables to estimate calibrated infection risk and place the patient within the paper's fixed-cycle validation deciles.</p>
             </div>
 
             <div class="result-content hidden" id="resultContent">
@@ -155,7 +157,7 @@
                 </div>
                 <p class="recommendation-text" id="recommendationText"></p>
                 <p class="recommendation-footnote">
-                  CDC recommends at least one lifetime HCV screening test for adults 18 and older, regardless of this score. The calculator's higher-priority flag uses a pragmatic threshold of 2.0% estimated risk and is not itself a formal guideline cutoff.
+                  CDC recommends at least one lifetime HCV screening test for adults 18 and older, regardless of this score. The calculator's higher-priority flag uses a pragmatic threshold of 2.0% estimated risk and is not itself a formal guideline cutoff. Decile context is referenced to the paper's fixed-cycle validation cohort.
                 </p>
               </div>
 
@@ -163,15 +165,15 @@
 
               <div class="metric-grid">
                 <div class="metric-card">
-                  <span class="metric-label">Mean predicted risk in this decile</span>
+                  <span class="metric-label">Mean calibrated risk in this decile</span>
                   <strong id="decileMeanRisk">--</strong>
                 </div>
                 <div class="metric-card">
-                  <span class="metric-label">Observed prevalence in this decile</span>
+                  <span class="metric-label">Observed prevalence in matching validation decile</span>
                   <strong id="decileObservedRisk">--</strong>
                 </div>
                 <div class="metric-card">
-                  <span class="metric-label">Cohort members in this decile</span>
+                  <span class="metric-label">Validation participants in this decile</span>
                   <strong id="decileCount">--</strong>
                 </div>
               </div>
@@ -181,7 +183,7 @@
                   <thead>
                     <tr>
                       <th>Decile</th>
-                      <th>Mean predicted risk</th>
+                      <th>Mean calibrated risk</th>
                       <th>Observed prevalence</th>
                       <th>N</th>
                     </tr>
@@ -195,7 +197,7 @@
       </main>
     </div>
 
-    <script src="./model-data.js?v=20260319-1"></script>
-    <script src="./app.js?v=20260319-1"></script>
+    <script src="./model-data.js?v=20260405-1"></script>
+    <script src="./app.js?v=20260405-1"></script>
   </body>
   </html>

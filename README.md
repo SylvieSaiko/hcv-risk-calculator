@@ -1,10 +1,10 @@
 # XGB website
 
-This folder contains a physician-facing static calculator for the demographic XGBoost model.
+This folder contains a physician-facing static calculator for the demographic XGBoost model aligned to the paper's fixed-cycle primary analysis.
 
 ## Files
 
-- `scripts/export_xgb_web_artifact.R`: rebuilds the browser-ready XGB artifact from the `attempt_5` prespecified demographic dataset.
+- `scripts/export_xgb_web_artifact.R`: rebuilds the browser-ready XGB artifact from the `attempt_5` prespecified demographic dataset using the paper's fixed-cycle split, calibration, and validation-decile reference.
 - `model-data.js`: generated bundle containing the exported trees, base margin, cohort summary, and decile cutoffs.
 - `index.html`, `styles.css`, `app.js`: static website files.
 - `artifacts/xgb_web_artifact.json`: raw JSON export for inspection.
