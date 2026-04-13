@@ -3,12 +3,12 @@ window.HCV_XGB_MODEL =
   "model_name": "attempt_5_demographic_xgb_fixed_cycle_primary_analysis",
   "display_name": "FIXED-CYCLE DEMOGRAPHIC XGB",
   "outcome": "Evidence of current or past HCV infection",
-  "exported_at": "2026-04-05 06:25:54 EDT",
+  "exported_at": "2026-04-13 19:17:48 EDT",
   "cohort": {
     "size": 69196,
     "positive_cases": 967,
     "prevalence": 0.013974796230996012,
-    "source_dataset": "/Users/sylviesaiko/Desktop/guanwen/research_for_Dr_Chen/NHANES_MINE/attempt_5/outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/data/hcv_demographics_prediction_analysis_dataset.rds"
+    "source_dataset": "../outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/data/hcv_demographics_prediction_analysis_dataset.rds"
   },
   "training": {
     "recovered_from": "attempt_5 prespecified_demo5 fixed-cycle primary analysis",
@@ -33,7 +33,7 @@ window.HCV_XGB_MODEL =
     "max_abs_replay_error": 1.7347195435668539e-07,
     "calibration": {
       "method": "Platt scaling",
-      "source": "/Users/sylviesaiko/Desktop/guanwen/research_for_Dr_Chen/NHANES_MINE/attempt_5/outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/supplement/model_probability_calibration_fixed_cycle.csv",
+      "source": "../outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/supplement/model_probability_calibration_fixed_cycle.csv",
       "fitted_on": "fixed-cycle training cohort",
       "intercept": -4.3017797173168137,
       "slope": 1.1964747807870779

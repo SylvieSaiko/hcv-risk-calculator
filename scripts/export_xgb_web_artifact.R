@@ -24,6 +24,20 @@ options(stringsAsFactors = FALSE)
 
 set.seed(20260305L)
 
+slash_path <- function(x) gsub("\\\\", "/", x)
+
+to_site_relative <- function(abs_path) {
+  abs_norm <- slash_path(normalizePath(abs_path, winslash = "/", mustWork = FALSE))
+  attempt_norm <- slash_path(normalizePath(attempt_root, winslash = "/", mustWork = FALSE))
+
+  if (startsWith(abs_norm, paste0(attempt_norm, "/"))) {
+    rel_from_attempt <- substring(abs_norm, nchar(attempt_norm) + 2L)
+    return(slash_path(file.path("..", rel_from_attempt)))
+  }
+
+  abs_norm
+}
+
 output_root <- file.path(
   attempt_root,
   "outputs",
@@ -385,7 +399,7 @@ artifact <- list(
     size = nrow(dat),
     positive_cases = as.integer(sum(dat$hcv_broad == 1L)),
     prevalence = as.numeric(mean(dat$hcv_broad)),
-    source_dataset = normalizePath(analysis_path, winslash = "/")
+    source_dataset = to_site_relative(analysis_path)
   ),
   training = list(
     recovered_from = "attempt_5 prespecified_demo5 fixed-cycle primary analysis",
@@ -401,7 +415,7 @@ artifact <- list(
     max_abs_replay_error = as.numeric(max_abs_diff),
     calibration = list(
       method = "Platt scaling",
-      source = normalizePath(calibration_path, winslash = "/"),
+      source = to_site_relative(calibration_path),
       fitted_on = "fixed-cycle training cohort",
       intercept = calibration_intercept,
       slope = calibration_slope
