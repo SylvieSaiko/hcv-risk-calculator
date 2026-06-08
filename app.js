@@ -184,36 +184,36 @@
 
     if (isAdult && isPriority) {
       return {
-        title: "Encourage HCV status testing now",
+        title: "Higher outreach priority",
         badge: "Higher-priority",
         isPriority,
-        text: `This patient meets CDC's age range for universal one-time adult screening and also exceeds the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)} estimated risk.`
+        text: `This patient meets CDC's age range for universal one-time adult screening and also exceeds the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)} estimated risk. Use this as outreach-prioritization context, not as a diagnostic result or standalone clinical decision rule.`
       };
     }
 
     if (isAdult) {
       return {
-        title: "Encourage at least one HCV status test",
+        title: "Routine screening still recommended",
         badge: "Routine adult screening",
         isPriority,
-        text: `CDC recommends at least one lifetime HCV screening test for adults 18 and older. This patient's score is below the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)}, but testing is still encouraged.`
+        text: `CDC recommends at least one lifetime HCV screening test for adults 18 and older. This patient's score is below the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)}, but universal screening recommendations still apply.`
       };
     }
 
     if (isPriority) {
       return {
-        title: "Consider HCV status testing",
-        badge: "Risk-based",
+        title: "Higher outreach priority",
+        badge: "Higher-priority",
         isPriority,
-        text: `This patient is outside the standard adult universal-screening age band but exceeds the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)} estimated risk. Use clinician judgment and exposure history.`
+        text: `This patient is outside the standard adult universal-screening age band but exceeds the calculator's higher-priority flag of ${formatPercent(PRIORITY_TEST_THRESHOLD, 1)} estimated risk. Use clinician judgment, exposure history, and local policy; this calculator is not a diagnostic result or standalone clinical decision rule.`
       };
     }
 
     return {
-      title: "Use age and exposure context",
-      badge: "Risk-based",
+      title: "Use clinical and exposure context",
+      badge: "Context needed",
       isPriority,
-      text: "This patient is outside the standard adult universal-screening age band and does not exceed the calculator's higher-priority flag. Consider testing based on exposures, pregnancy, or other clinical risk factors."
+      text: "This patient is outside the standard adult universal-screening age band and does not exceed the calculator's higher-priority flag. Consider testing based on exposures, pregnancy, other clinical risk factors, and local policy."
     };
   }
 

@@ -18,15 +18,17 @@
     <div class="page-shell">
       <header class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">Fixed-Cycle Primary Analysis</p>
-          <h1>HCV infection risk and decile calculator</h1>
+          <p class="eyebrow">Proof-of-concept NHANES model</p>
+          <h1>NHANES-derived HCV marker risk calculator</h1>
           <p class="hero-text">
-            This page scores a single patient locally from the 5-variable
-            XGBoost model used for the paper's fixed-cycle primary analysis
+            This page scores a single patient locally from a 5-variable
+            XGBoost model derived from NHANES data for the paper's fixed-cycle primary analysis
             using birth year, sex, birthplace, race/ethnicity, and
             income-to-poverty ratio. Risk is displayed on the paper-aligned
             calibrated probability scale for evidence of current or past HCV
-            infection, not confirmed active viremia.
+            infection, not confirmed active viremia. This proof-of-concept
+            calculator has not been externally validated for clinical
+            decision-making.
           </p>
           <div class="hero-highlights" aria-label="Calculator highlights">
             <div class="hero-highlight">
@@ -122,9 +124,11 @@
             <p class="notes-title">Use notes</p>
             <ul class="notes-list">
               <li>This score estimates evidence of current or past HCV infection, meaning the patient may be currently infected or may have been infected previously.</li>
+              <li>This calculator is intended for research, education, and outreach-prioritization illustration, not for diagnosis or standalone clinical decision-making.</li>
               <li>Calibration and decile context are anchored to the paper's fixed-cycle split (training n = 48,434; validation n = 20,762).</li>
+              <li>The NHANES-derived model should not be assumed to transport to other healthcare systems without local validation and recalibration.</li>
               <li>A positive status screen still needs standard HCV testing workflow, typically antibody testing with confirmatory HCV RNA testing.</li>
-              <li>The calculator runs entirely in the browser after the page is opened.</li>
+              <li>The calculator runs entirely in the browser after the page is opened; users should not enter names, record numbers, or other direct identifiers.</li>
               <li>Income should be entered as poverty-income ratio, not raw annual dollars.</li>
             </ul>
           </div>
@@ -165,7 +169,7 @@
                 </div>
                 <p class="recommendation-text" id="recommendationText"></p>
                 <p class="recommendation-footnote">
-                  CDC recommends at least one lifetime HCV screening test for adults 18 and older, regardless of this score. The calculator's higher-priority flag uses a pragmatic threshold of 2.0% estimated risk and is not itself a formal guideline cutoff. Decile context is referenced to the paper's fixed-cycle validation cohort.
+                  CDC recommends at least one lifetime HCV screening test for adults 18 and older, regardless of this score. This output is not a diagnostic result or a formal clinical threshold. The calculator's higher-priority flag uses a pragmatic threshold of 2.0% estimated risk and is not itself a formal guideline cutoff. Decile context is referenced to the paper's fixed-cycle validation cohort.
                 </p>
               </div>
 
@@ -206,6 +210,6 @@
     </div>
 
     <script src="./model-data.js?v=20260405-1"></script>
-    <script src="./app.js?v=20260405-1"></script>
+    <script src="./app.js?v=20260608-1"></script>
   </body>
   </html>
