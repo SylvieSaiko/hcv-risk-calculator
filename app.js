@@ -133,10 +133,16 @@
     return {
       birth_year: input.birthYear,
       male: input.sex === "Male" ? 1 : 0,
+      sex_Female: input.sex === "Female" ? 1 : 0,
+      sex_Male: input.sex === "Male" ? 1 : 0,
       race_ethnicityWhite: input.ethnicity === "White" ? 1 : 0,
       race_ethnicityBlack: input.ethnicity === "Black" ? 1 : 0,
       race_ethnicityHispanic: input.ethnicity === "Hispanic" ? 1 : 0,
       "race_ethnicityAsian/Other": input.ethnicity === "Asian/Other" ? 1 : 0,
+      race_ethnicity_White: input.ethnicity === "White" ? 1 : 0,
+      race_ethnicity_Black: input.ethnicity === "Black" ? 1 : 0,
+      race_ethnicity_Hispanic: input.ethnicity === "Hispanic" ? 1 : 0,
+      "race_ethnicity_Asian/Other": input.ethnicity === "Asian/Other" ? 1 : 0,
       born_usa: input.birthplace === "USA" ? 1 : 0,
       incomepir: clampPir(input.incomePir)
     };

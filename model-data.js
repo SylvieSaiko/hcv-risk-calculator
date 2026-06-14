@@ -1,806 +1,81 @@
 window.HCV_XGB_MODEL = 
 {
-  "model_name": "attempt_5_demographic_xgb_fixed_cycle_primary_analysis",
+  "model_name": "attempt_5_demographic_xgb_fixed_cycle_training_cv_leakage_safe",
   "display_name": "FIXED-CYCLE DEMOGRAPHIC XGB",
   "outcome": "Evidence of current or past HCV infection",
-  "exported_at": "2026-04-13 19:17:48 EDT",
+  "exported_at": "2026-06-14 06:00:00 EDT",
   "cohort": {
     "size": 69196,
     "positive_cases": 967,
     "prevalence": 0.013974796230996012,
-    "source_dataset": "../outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/data/hcv_demographics_prediction_analysis_dataset.rds"
+    "source_dataset": "../outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/data/hcv_demographics_prediction_analysis_dataset.csv"
   },
   "training": {
-    "recovered_from": "attempt_5 prespecified_demo5 fixed-cycle primary analysis",
+    "recovered_from": "revision_bmc_20260601 leakage-safe XGBoost analysis",
     "feature_mode": "prespecified_demo5",
     "split": "fixed_cycle",
-    "training_cycles": [1, 3, 5, 6, 7, 8, 11],
-    "validation_cycles": [2, 4, 12],
+    "training_cycles": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      11
+    ],
+    "validation_cycles": [
+      2,
+      4,
+      12
+    ],
     "training_n": 48434,
     "validation_n": 20762,
-    "predictor_columns": ["birth_year", "male", "race_ethnicityWhite", "race_ethnicityBlack", "race_ethnicityHispanic", "race_ethnicityAsian/Other", "born_usa", "incomepir"],
+    "predictor_columns": [
+      "birth_year",
+      "born_usa",
+      "incomepir",
+      "sex_Female",
+      "sex_Male",
+      "race_ethnicity_Asian/Other",
+      "race_ethnicity_Black",
+      "race_ethnicity_Hispanic",
+      "race_ethnicity_White"
+    ],
     "xgb_params": {
       "objective": "binary:logistic",
       "eval_metric": "auc",
-      "eta": 0.050000000000000003,
+      "eta": 0.05,
       "max_depth": 3,
       "min_child_weight": 1,
-      "subsample": 0.80000000000000004,
-      "colsample_bytree": 0.80000000000000004,
-      "scale_pos_weight": 69.809941520467831
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "scale_pos_weight": 69.80994152046783,
+      "seed": 20260305
     },
-    "best_nrounds": 166,
-    "max_abs_replay_error": 1.7347195435668539e-07,
+    "best_nrounds": 132,
+    "max_abs_replay_error": 1.6941793257174709e-06,
     "calibration": {
       "method": "Platt scaling",
-      "source": "../outputs/hcv_demographics_prediction_1999_2023_prespecified_demo5/supplement/model_probability_calibration_fixed_cycle.csv",
+      "source": "training predictions from leakage-safe XGBoost export",
       "fitted_on": "fixed-cycle training cohort",
-      "intercept": -4.3017797173168137,
-      "slope": 1.1964747807870779
+      "intercept": -4.284742953013051,
+      "slope": 1.1832029437667935
     }
   },
   "scoring": {
-    "base_margin": 9.9515929719018459e-08,
+    "base_margin": -1.769983659638541e-07,
     "objective": "binary:logistic",
     "calibration": {
       "method": "platt",
-      "intercept": -4.3017797173168137,
-      "slope": 1.1964747807870779
+      "intercept": -4.284742953013051,
+      "slope": 1.1832029437667935
     },
     "trees": [
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1975,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.047602836000000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.038824897300000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4500000499999999,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.058282017700000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0061839460399999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1985,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.5199999799999999,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.022799255300000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.082257509199999995
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.085030883599999996
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.099950440200000004
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1942,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.012097604600000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.054764051000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0154682547
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.047492831899999997
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.081359230000000005
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.095234222699999996
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1986,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.032090660200000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.077571146199999996
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1975,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.040827427100000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.034360073499999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0150982384
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.047562535900000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1995,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.076650731299999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.040492605399999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.091302402300000002
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1975,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.89999998,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1938,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.033244397500000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.053237851699999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0072460523799999996
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.050532747099999997
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1985,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.36000001,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.016632963000000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.078674040700000003
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.071155935500000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.085946083100000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0149075435
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0539441295
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.0399999599999998,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0526712425
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0040033636600000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1985,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.059756286399999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0044417488399999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.064845137299999994
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.082822672999999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.012606254799999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.043790526699999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.030319848999999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.045452084400000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1983,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.055038761300000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.00735709677
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1993,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.061014380299999997
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.080694623300000004
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1973,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.9199999599999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1948,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0024581986899999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.052647091399999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.024235380800000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.017369227500000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1983,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.36000001,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.00164579251
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.064083524000000003
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0618617609
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.079362422200000005
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
         "split": "incomepir",
-        "split_condition": 2.4500000499999999,
+        "split_condition": 1.79999995,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -808,7 +83,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "born_usa",
+            "split": "race_ethnicity_Hispanic",
             "split_condition": 1,
             "yes": 3,
             "no": 4,
@@ -817,116 +92,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2400000100000002,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0267329309
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.091449648100000003
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0047485912199999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.028293877799999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.052235443100000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.022090008500000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.089822024099999995
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0088118892200000007
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.7699999800000001,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
+                "split": "sex_Female",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -934,120 +100,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0129612181
+                    "leaf": 0.0397567339
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.039358165100000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1967,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0093060359400000004
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.077664397699999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1987,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.081897735599999993
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.073749773199999993
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0399999600000001,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0168628283
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0606857352
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.1599999700000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.021866820799999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.032936971600000003
+                    "leaf": 0.0180763584
                   }
                 ]
               },
@@ -1062,11 +119,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.019028706499999999
+                    "leaf": -0.0470811091
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.042197015099999999
+                    "leaf": -0.0116911419
                   }
                 ]
               }
@@ -1075,116 +132,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1991,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4500000499999999,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.024555742700000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.067191451799999996
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.061824627200000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0753600299
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 2.3199999299999998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0074806506700000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.031795140399999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.60000002,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.026588952200000002
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0072582997399999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
+            "split": "sex_Female",
             "split_condition": 1,
             "yes": 5,
             "no": 6,
@@ -1193,7 +141,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "male",
+                "split": "race_ethnicity_Black",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -1201,18 +149,18 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.040329668700000001
+                    "leaf": -0.0147750517
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0177676771
+                    "leaf": 0.0200255793
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "male",
+                "split": "race_ethnicity_Black",
                 "split_condition": 1,
                 "yes": 13,
                 "no": 14,
@@ -1220,11 +168,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.017591809900000002
+                    "leaf": -0.0465344004
                   },
                   {
                     "nodeid": 14,
-                    "leaf": 0.016574779500000001
+                    "leaf": -0.0157000273
                   }
                 ]
               }
@@ -1245,7 +193,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1941,
+            "split_condition": 1948,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -1253,7 +201,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -1261,11 +209,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0028991969299999999
+                    "leaf": 0.0245154109
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0443356149
+                    "leaf": -0.0452196337
                   }
                 ]
               },
@@ -1280,556 +228,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0191069525
+                    "leaf": -0.0266154837
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.034763023300000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0609901734
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.073414772700000006
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1986,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.018252022600000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.059267170700000003
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "race_ethnicityBlack",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.037667796000000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.018245642999999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.025120088799999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.00763933687
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.016409300299999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.00897950772
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.0310275164
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.026673916700000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1975,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.89999998,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0127840787
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.042727138800000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0048960475300000002
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.043152950699999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1991,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.053997423500000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.070293434000000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0399999600000001,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.0042643561
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.052333649199999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.7999999499999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0093679232500000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.041984703399999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0261906534
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0157104414
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1985,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.5199999799999999,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0170263238
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.051406104100000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.051946234000000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.068690739599999995
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0026378638599999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.041765548299999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0082191256799999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.036195427199999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1991,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.045680805999999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.012887365200000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.069569766500000005
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.061332214599999997
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1949,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.025524510100000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.031706448599999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.6300001100000001,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.038751330200000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.00996639486
+                    "leaf": 0.0508982651
                   }
                 ]
               }
@@ -1847,38 +250,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4500000499999999,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0214351043
+                    "leaf": -0.0774393976
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.062368776600000002
+                    "leaf": -0.0365751758
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.0570727475
+                    "leaf": -0.0981797501
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.068001598100000005
+                    "leaf": -0.0852843523
                   }
                 ]
               }
@@ -1890,7 +293,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "incomepir",
-        "split_condition": 2.4500000499999999,
+        "split_condition": 2.31999993,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -1907,38 +310,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 1.20000005,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.026199227200000001
+                    "leaf": -0.0418671928
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0272542518
+                    "leaf": -0.00868696906
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0399999600000001,
+                "split": "sex_Female",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.026745730999999998
+                    "leaf": 0.030391207
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.00439346349
+                    "leaf": 0.00617469288
                   }
                 ]
               }
@@ -1947,7 +350,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "male",
+            "split": "sex_Female",
             "split_condition": 1,
             "yes": 5,
             "no": 6,
@@ -1956,7 +359,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityBlack",
+                "split": "race_ethnicity_Asian/Other",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -1964,30 +367,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.041030101499999999
+                    "leaf": -0.0145068308
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0092228734900000001
+                    "leaf": -0.071572043
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3800001100000001,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.00103751139
+                    "leaf": -0.0477331132
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.021365266300000001
+                    "leaf": -0.0714616477
                   }
                 ]
               }
@@ -1999,225 +402,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1948,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0115380576
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.045308519200000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.7699999800000001,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.037084244199999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0093928510299999997
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1982,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.046146098500000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0035824738400000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.045200508100000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.064753465400000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 2.4500000499999999,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.022908350500000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0243603755
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0028784566099999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.023103643199999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.040293019300000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.019894292599999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.019320314799999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.019322292899999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
+        "split_condition": 1975,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -2234,19 +419,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.47000003,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0011398381299999999
+                    "leaf": -0.0437040478
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.053947795200000002
+                    "leaf": 0.0320788287
                   }
                 ]
               },
@@ -2261,11 +446,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0112463171
+                    "leaf": -0.0201959368
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.034172974500000002
+                    "leaf": 0.0506750159
                   }
                 ]
               }
@@ -2291,11 +476,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0051793795999999998
+                    "leaf": -0.0252692699
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.043422702700000003
+                    "leaf": -0.0689105317
                   }
                 ]
               },
@@ -2310,11 +495,1755 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.046077668699999998
+                    "leaf": -0.0740909129
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.063679151200000006
+                    "leaf": -0.0935018063
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1975,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1942,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.029911546
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0211802702
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00982781406
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0453389473
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1983,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0281407218
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0807538554
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1995,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.075306721
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0911560431
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1977,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.23000002,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1948,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00185496826
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0498261452
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1967,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00239402684
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0849355683
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0545189939
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0844186991
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0798565075
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0875660554
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1942,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0102192713
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0508505367
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.18000007,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0542403646
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00997274369
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1983,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.36000001,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00298424019
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0546309464
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1993,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0631665811
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0832562223
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "born_usa",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0311378669
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0415878296
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00659693917
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0247792657
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00714085763
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.0250118282
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0169618912
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.00723503856
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1973,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0326628387
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0348159038
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.011211778
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0445129536
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1985,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0595746599
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0147080598
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1995,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0639233366
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0816973969
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 2.45000005,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.03999996,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0303942021
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00392211135
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.60000002,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0208618715
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00423046341
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0298033562
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0448543243
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.76999998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0174681451
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.00995686837
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1975,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.63,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1938,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0296081938
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0482263453
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1945,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0306683611
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0118341167
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1991,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0412563048
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.08103019
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.15999997,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0713199526
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0789452046
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 2.45000005,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0270012822
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00337516004
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.60000002,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0276515316
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00627574418
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0173007566
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0422095209
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0210958906
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0150526827
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.94000006,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0367739424
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0251665246
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0266755875
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00833423063
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Asian/Other",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0042145336
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0288122743
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.20000005,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0836894065
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.050068941
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1977,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.86000001,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00580720045
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0460408144
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1968,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00763094798
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0472855233
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0605740026
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0287240744
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.30999994,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0784584805
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0738013908
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1948,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0180356055
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0540613309
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0139038088
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0412778072
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1980,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0479623191
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.00371732051
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1995,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.05317799
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0730781034
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 3.47000003,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0109572336
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0291378796
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.03999996,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0116471415
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0159331132
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.38000011,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00605357205
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0222053155
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0476665981
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0213185772
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1948,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.13999999,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0166447964
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.013179292
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0129459891
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.039970737
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1983,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.45000005,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0109072849
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0559439957
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1992,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0498106778
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0693213493
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1977,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.013965738
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0371685885
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1968,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0335873961
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00792959239
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1989,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0549654327
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0211821869
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0592510104
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0717256516
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0183014646
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00759615749
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0236405004
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0217069928
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0291807558
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.011940062
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0186374914
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.00570753915
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1975,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.31999993,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1941,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.013136073
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0389189087
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1966,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00361958961
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0540141761
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1989,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.43000007,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0254546534
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0642610714
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0674366578
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0478915982
                   }
                 ]
               }
@@ -2335,116 +2264,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.1699999599999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0064749545400000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.044470164899999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1945,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.026064867200000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.013177387400000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1985,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0399999600000001,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0029593280100000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.041390262499999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1993,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.047513455199999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.063375160099999994
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.89999998,
+            "split_condition": 2.18000007,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -2460,30 +2280,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.023213556
+                    "leaf": -0.022497667
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.032708514500000001
+                    "leaf": 0.038273152
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1945,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.034801091999999999
+                    "leaf": 0.0154387224
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0045758062
+                    "leaf": -0.0176875498
                   }
                 ]
               }
@@ -2493,101 +2313,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1995,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.030604472399999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.068104624700000005
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.064065478699999998
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0117001841
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0383310132
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.8900001,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.035101376500000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0047582765100000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1989,
+            "split_condition": 1991,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -2596,25 +2322,25 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 2.4500000499999999,
+                "split_condition": 2.43000007,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.00614033593
+                    "leaf": -0.0209998805
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.058405648900000003
+                    "leaf": -0.0620468333
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 13,
                 "no": 14,
@@ -2622,11 +2348,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.061809685099999997
+                    "leaf": -0.0697615519
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.045483402899999997
+                    "leaf": -0.0502562933
                   }
                 ]
               }
@@ -2638,225 +2364,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "incomepir",
-        "split_condition": 1.0399999600000001,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.012663289899999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.032496370400000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.041272804099999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0047052684200000004
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0167543385
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.043878801199999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3800001100000001,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.0067844735499999996
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.018568323899999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1943,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.028358811500000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0130311204
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.027584075900000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0043762619599999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1992,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.025933587899999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.060607891499999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.053875573000000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.062408696899999998
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.1699999599999999,
+        "split_condition": 1.03999996,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -2881,18 +2389,18 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.041287671800000002
+                    "leaf": 0.0213477425
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.027392277499999999
+                    "leaf": -0.0320451893
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "male",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 9,
                 "no": 10,
@@ -2900,11 +2408,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.013773257800000001
+                    "leaf": 0.0165398289
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.026972809800000001
+                    "leaf": 0.0328734256
                   }
                 ]
               }
@@ -2913,7 +2421,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "race_ethnicityBlack",
+            "split": "sex_Female",
             "split_condition": 1,
             "yes": 5,
             "no": 6,
@@ -2922,244 +2430,26 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.029546612900000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0056617576599999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0013176797699999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0174666196
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1948,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.015578419
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.040472965700000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0155714033
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.030611103399999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1989,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
                 "split": "incomepir",
-                "split_condition": 2.4300000700000002,
+                "split_condition": 3.63000011,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.00701974565
+                    "leaf": 0.0103537077
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.052718270599999999
+                    "leaf": -0.0166485365
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.042385641500000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.061707258199999997
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1983,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.6299999999999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0130685717
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.030578425199999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0046160868400000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.032101344300000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1989,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.37000000500000002,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0096403583899999992
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.040191080400000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_Black",
                 "split_condition": 1,
                 "yes": 13,
                 "no": 14,
@@ -3167,214 +2457,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.062034953400000002
+                    "leaf": -0.0285285357
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.046721134300000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.5999998999999998,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1949,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0031930361899999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.029039671600000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1963,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0021417797499999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.049621831599999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1995,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.020568585
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.058891743400000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.060522593600000001
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1949,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.015081646900000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0345910527
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.1500001000000002,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.033849224400000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0033326053500000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.4500000499999999,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0091173732699999996
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.060580421199999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1978,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.065091930300000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0507602952
+                    "leaf": -0.00761073222
                   }
                 ]
               }
@@ -3394,6 +2481,115 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0119551485
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0394126587
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0124879209
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.031530425
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1991,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0502657592
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0661924854
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1986,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.00215882924
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0520301647
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 3.5999999,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
             "split": "born_usa",
             "split_condition": 1,
             "yes": 3,
@@ -3403,38 +2599,147 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1954,
+                "split": "incomepir",
+                "split_condition": 0.230000004,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0033163041800000001
+                    "leaf": 0.0164218284
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.033323503999999997
+                    "leaf": -0.0291218162
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1942,
+                "split": "sex_Female",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0165568795
+                    "leaf": 0.0182118285
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.022754747400000001
+                    "leaf": -0.00176063925
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.80999994,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.0162695181
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0174348932
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.83999991,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0838509127
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0243883897
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1949,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0161156431
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0385029763
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.63000011,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0360843204
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00166678708
                   }
                 ]
               }
@@ -3452,7 +2757,116 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "incomepir",
+                "split_condition": 1.01999998,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.006163707
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0397215188
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1995,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0453977101
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0646758229
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1977,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.009822689
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0460801162
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0156889167
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0272371918
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1983,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -3460,11 +2874,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0431796573
+                    "leaf": -0.0558168851
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0071112387800000001
+                    "leaf": 0.00257699168
                   }
                 ]
               },
@@ -3479,11 +2893,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.041433643499999999
+                    "leaf": -0.050862629
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.059225481000000003
+                    "leaf": -0.0657831952
                   }
                 ]
               }
@@ -3495,7 +2909,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1983,
+        "split_condition": 1977,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -3504,7 +2918,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.6299999999999999,
+            "split_condition": 1.16999996,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -3520,11 +2934,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.00722010154
+                    "leaf": -0.00901173241
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.026330549299999999
+                    "leaf": 0.0403741747
                   }
                 ]
               },
@@ -3532,18 +2946,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1967,
+                "split_condition": 1943,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.0016011715599999999
+                    "leaf": -0.0298742894
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.028510788499999998
+                    "leaf": 0.0113619398
                   }
                 ]
               }
@@ -3553,7 +2967,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1991,
+            "split_condition": 1993,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -3561,38 +2975,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 1.5,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.013693983700000001
+                    "leaf": -0.0224071238
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.062726147499999996
+                    "leaf": -0.050832659
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 5,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.057358484699999997
+                    "leaf": -0.0618259013
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.033801283699999997
+                    "leaf": -0.0669208094
                   }
                 ]
               }
@@ -3621,7 +3035,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -3629,30 +3043,139 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0146194054
+                    "leaf": 0.014572571
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.027713719800000002
+                    "leaf": -0.0271327198
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.55999994,
+                "split": "born_usa",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.027090860500000001
+                    "leaf": -0.00773143163
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0091367503599999993
+                    "leaf": 0.0329650603
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1983,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00349654886
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0352204964
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1995,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0405539088
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0614732206
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1977,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.5999999,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1949,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.000839118555
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0299247056
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1967,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00106312218
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0667236745
                   }
                 ]
               }
@@ -3670,19 +3193,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.77999997,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0098811071399999995
+                    "leaf": -0.0205566157
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0492769256
+                    "leaf": -0.0595646799
                   }
                 ]
               },
@@ -3697,11 +3220,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.040205873500000003
+                    "leaf": -0.0489784889
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.058208078099999998
+                    "leaf": -0.0630961806
                   }
                 ]
               }
@@ -3721,117 +3244,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1949,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.012845257299999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.034441642500000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.015118725600000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.024410333499999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1992,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.034387406000000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0028929018900000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.055579364300000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.034281164400000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1983,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
+            "split": "incomepir",
+            "split_condition": 3.03999996,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -3847,11 +3261,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0153283989
+                    "leaf": -0.000590654847
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0074940994399999997
+                    "leaf": 0.0331284143
                   }
                 ]
               },
@@ -3859,18 +3273,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1968,
+                "split_condition": 1958,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.027023229700000002
+                    "leaf": 0.00183709955
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.032415565100000002
+                    "leaf": -0.0380205363
                   }
                 ]
               }
@@ -3880,7 +3294,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1993,
+            "split_condition": 1989,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -3888,7 +3302,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityHispanic",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -3896,18 +3310,18 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.018497670099999999
+                    "leaf": -0.0410284176
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.060951072699999997
+                    "leaf": 0.000799032336
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 13,
                 "no": 14,
@@ -3915,11 +3329,120 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.057616271099999998
+                    "leaf": -0.0612918809
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.048515804099999997
+                    "leaf": -0.0481615514
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1968,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1942,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00058578368
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0365690589
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.18000007,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0325215384
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00568667613
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1985,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.22000003,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.0112187741
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0369856618
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0416336544
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0615931414
                   }
                 ]
               }
@@ -3931,7 +3454,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "incomepir",
-        "split_condition": 1.6299999999999999,
+        "split_condition": 1.03999996,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -3948,7 +3471,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityBlack",
+                "split": "race_ethnicity_Black",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -3956,11 +3479,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.025571230800000001
+                    "leaf": -0.0287306346
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.040562942599999999
+                    "leaf": 0.0461673848
                   }
                 ]
               },
@@ -3968,18 +3491,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 1.0399999600000001,
+                "split_condition": 0.600000024,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.019396111399999999
+                    "leaf": 0.0137228062
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0035280410700000001
+                    "leaf": 0.02396526
                   }
                 ]
               }
@@ -3988,8 +3511,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.55999994,
+            "split": "sex_Female",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -3997,7 +3520,116 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityAsian/Other",
+                "split": "incomepir",
+                "split_condition": 4.38000011,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00754108885
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0237000417
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0154882139
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0453698784
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.76999998,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1943,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00869687833
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0280765593
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1964,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00886414666
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0497381836
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1983,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -4005,30 +3637,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0045401351500000001
+                    "leaf": -0.0399147943
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.033103033900000002
+                    "leaf": 0.00608085655
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.9000000999999997,
+                "split": "birth_year",
+                "split_condition": 1995,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.067194931200000002
+                    "leaf": -0.04086674
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.021550269800000001
+                    "leaf": -0.061141938
                   }
                 ]
               }
@@ -4049,334 +3681,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 3.5999998999999998,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00445083808
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.025571379799999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0010196570099999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.052285116200000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1994,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0128726382
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.054777603600000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.046150814700000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0570206828
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.1699999599999999,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.23000000400000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0292980727
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0349810906
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0099802864700000004
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.024985326499999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.2000000500000001,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.103045337
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.016788549699999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.022238550700000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.00233964087
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1980,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0399999600000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0155025218
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.013424533400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1942,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.017049269799999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.020739871999999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4300000700000002,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.013588775900000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.059152971999999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1991,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.061167139600000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.056665778200000003
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.5999998999999998,
+            "split_condition": 1.63,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -4385,18 +3690,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1949,
+                "split_condition": 1933,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0012319041399999999
+                    "leaf": -0.0356166698
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0212711729
+                    "leaf": 0.0269011613
                   }
                 ]
               },
@@ -4411,11 +3716,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0025313866799999999
+                    "leaf": 0.0074762241
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.054208278700000001
+                    "leaf": -0.0374416374
                   }
                 ]
               }
@@ -4424,8 +3729,117 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0252838563
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0575562119
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0483939946
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0603076294
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1967,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1949,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00982545968
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.026092032
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.06999993,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0339225493
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00955374446
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.51999998,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -4434,37 +3848,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1994,
+                "split_condition": 1985,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.035779658700000001
+                    "leaf": 0.00689208973
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.056433778300000001
+                    "leaf": -0.0454104654
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.023038888399999999
+                    "leaf": -0.0602906309
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.026786867499999999
+                    "leaf": -0.0370336585
                   }
                 ]
               }
@@ -4484,117 +3898,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.1699999599999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0104706166
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.026602292400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1967,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0052941101599999997
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.018412649600000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
             "split": "birth_year",
-            "split_condition": 1992,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4300000700000002,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0171167981
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.047775175400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.053433157500000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.028758702800000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1971,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.5999998999999998,
+            "split_condition": 1968,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -4603,37 +3908,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1949,
+                "split_condition": 1945,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0016185076700000001
+                    "leaf": -0.00632052822
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.021446602400000001
+                    "leaf": 0.0208427142
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1960,
+                "split": "sex_Female",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0017002243500000001
+                    "leaf": 0.0024456291
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.039930056800000002
+                    "leaf": -0.0247873068
                   }
                 ]
               }
@@ -4651,40 +3956,25 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.5199999799999999,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0056335129799999998
+                    "leaf": -0.028785577
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.032855745399999997
+                    "leaf": -0.0619114749
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0432761833
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.055861771099999999
-                  }
-                ]
+                "leaf": -0.0596765243
               }
             ]
           }
@@ -4694,210 +3984,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1980,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1941,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0223128553
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.047963008299999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0023211487599999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.018559092700000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.017913103100000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.055792797399999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.057645358100000002
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1977,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.5999998999999998,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0020644569299999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.020866204100000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1960,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0063060591900000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.047062035699999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1989,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1979,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.051881503299999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.011891549499999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0354245901
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.055220879600000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1967,
+        "split_condition": 1968,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -4922,11 +4009,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0064754248599999996
+                    "leaf": -0.0183923766
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.030579978599999998
+                    "leaf": 0.0352137275
                   }
                 ]
               },
@@ -4934,18 +4021,2044 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1945,
+                "split_condition": 1943,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.019481874999999999
+                    "leaf": -0.0224271845
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0085850348699999992
+                    "leaf": 0.011270781
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1985,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.03999996,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.0138568301
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0326210111
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0398407094
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0587167852
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.91999996,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0014484789
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0311338361
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0188124049
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0054782331
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -6.19306156e-05
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0461006649
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0289104041
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.00883340556
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1980,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.5999999,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0132807717
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0206293017
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1978,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0136795687
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0593006685
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.43000007,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.02655131
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0602032132
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1993,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0620421544
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0572249703
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1968,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1949,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0137350112
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.014250352
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1960,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0347862877
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00870136078
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.53999996,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1994,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00392543059
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0531887822
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1969,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0920043066
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.042645026
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1977,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.5,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1949,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00180363504
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0223794114
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1967,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00271977088
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0480638593
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00991022866
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0538324304
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0427775346
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0575539246
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1985,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.16999996,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0257294122
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0288232621
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1966,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00518606976
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.022197498
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1994,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.43000007,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0170725584
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0594688654
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0575663224
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0248437207
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0132384747
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00936710741
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0202116799
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.51999998,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00681703305
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0294855125
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0405146927
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.056740161
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 4.38000011,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.22000003,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0169541333
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00777587388
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0117156422
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0728259757
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.45000005,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0235632956
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.000179384879
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.75,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.065603964
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0210590102
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1971,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1941,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0262702145
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0165239368
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0224812478
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -5.56593404e-05
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.43000007,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0100449733
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0397840217
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0400120988
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0563782044
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1983,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.03999996,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1947,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00570768584
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0248875953
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1966,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00505396212
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0199583229
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.020866476
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0562847555
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.05754878
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0138004376
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0278828498
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0141370595
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00595684769
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0240640491
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.010648272
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0137261143
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.000200387309
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1967,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1949,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.010683422
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0129072284
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1961,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0281863343
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00389555329
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00974514242
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0298342463
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0382977501
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0557256602
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1983,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.91999996,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1933,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0479788445
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0178110339
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1966,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.000299036736
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0387260355
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1989,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Male",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00531283906
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0438798033
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0574896
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0338751934
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1985,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.03999996,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0213180706
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0279875044
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1967,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00534463674
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0191178992
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1991,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0109131038
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0576772504
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 5,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0533440188
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0151208434
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.03999996,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.109999999,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0527245402
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.027582854
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0218560956
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0109007033
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.38000011,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00653921906
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0127477264
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 5,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0129439337
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0309734643
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "born_usa",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.230000004,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0842645019
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0366072766
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.12,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0336823687
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0113598322
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.79999995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Male",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00642598793
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.0148954438
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.00564345904
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0153504452
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 4.53000021,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00589935202
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0139285764
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.3499999,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00520397117
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0596378408
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.9000001,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.080095306
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0184887704
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.73999977,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0442362204
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0098239854
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.03999996,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.230000004,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0364945531
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0271517783
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0188485179
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00865665451
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0168226324
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.00367637514
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0141946143
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0408906601
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1982,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.011696565
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0308909118
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1967,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0150745586
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00466992287
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00889058691
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0552137569
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0566798411
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1966,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1949,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.012282691
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0302210394
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0137351928
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0196585171
                   }
                 ]
               }
@@ -4971,11 +6084,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0044737225399999999
+                    "leaf": -0.00445435895
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.055589295900000002
+                    "leaf": -0.0494564325
                   }
                 ]
               },
@@ -4983,18 +6096,736 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1972,
+                "split_condition": 1969,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.080249302100000003
+                    "leaf": -0.088710241
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.046871677
+                    "leaf": -0.0437922478
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1978,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.00999999,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0114260921
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0273084342
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1963,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00595916994
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0135556981
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1998,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.014449765
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0500887446
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0545037389
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.63,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0196040012
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.000323521643
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.03999996,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00494996971
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0151073458
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.71000004,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0570972674
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.0037158851
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.00714177638
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0221622121
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1980,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1953,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0114496127
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0287136026
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1948,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00725964177
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.01483675
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1994,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.43000007,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0126148937
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0478589758
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.054949373
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 2.45000005,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.57000005,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0153620532
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00555560319
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.22000003,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00184112531
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0324727558
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.07999992,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00775298616
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0112282699
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.81999993,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0529532321
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0178094078
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1968,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.589999974,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.102733627
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.00463961763
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.00536309509
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0169716347
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1998,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.01999998,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -8.7842338e-05
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0262088832
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0540913939
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1980,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1942,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0119771073
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0155617623
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.45000005,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00352553534
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0241887681
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1989,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0320926681
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0513735823
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.850000024,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0185476858
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0293915402
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1989,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.03999996,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00701275049
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0198160317
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00330982986
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0120865665
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Asian/Other",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 5,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0487026796
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.000429819629
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1994,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0678943768
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0530873016
                   }
                 ]
               }
@@ -5015,7 +6846,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 2.3199999299999998,
+            "split_condition": 1.03999996,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -5023,19 +6854,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1941,
+                "split": "born_usa",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.016243716700000001
+                    "leaf": -0.00859200303
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.016030918799999998
+                    "leaf": 0.0196769983
                   }
                 ]
               },
@@ -5043,18 +6874,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1967,
+                "split_condition": 1942,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0044091534799999997
+                    "leaf": -0.0194121748
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.037373330400000002
+                    "leaf": 0.00234680506
                   }
                 ]
               }
@@ -5063,8 +6894,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1994,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -5072,40 +6903,25 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4300000700000002,
+                "split": "birth_year",
+                "split_condition": 1998,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.014873315599999999
+                    "leaf": -0.0144512448
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.057250607799999999
+                    "leaf": -0.0536539741
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0398894921
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.054732371100000003
-                  }
-                ]
+                "leaf": -0.05477456
               }
             ]
           }
@@ -5123,47 +6939,47 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "male",
-            "split_condition": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
             "yes": 3,
             "no": 4,
             "missing": 4,
             "children": [
               {
                 "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00675304839
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0330680124
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1967,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.00083406112400000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.024462198800000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1942,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0094108060000000007
+                    "leaf": 0.0134765599
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.017717508600000001
+                    "leaf": -0.00566880731
                   }
                 ]
               }
@@ -5172,7 +6988,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "race_ethnicityWhite",
+            "split": "race_ethnicity_White",
             "split_condition": 1,
             "yes": 5,
             "no": 6,
@@ -5181,19 +6997,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1994,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.042108040300000003
+                    "leaf": -0.0279836785
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.056939750900000002
+                    "leaf": -0.0537587218
                   }
                 ]
               },
@@ -5208,11 +7024,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.0080630751299999998
+                    "leaf": 0.0046890392
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.054755765900000003
+                    "leaf": -0.0532576032
                   }
                 ]
               }
@@ -5223,116 +7039,7 @@ window.HCV_XGB_MODEL =
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0039299214300000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0236467551
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1949,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.026260811799999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0094571849299999993
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1995,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.021284131299999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.000608784438
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0324400626
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.054209765
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "male",
+        "split": "sex_Female",
         "split_condition": 1,
         "yes": 1,
         "no": 2,
@@ -5341,116 +7048,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.49000000999999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.44999998800000002,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0055446228899999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.040744509499999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.010037302
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.037637759
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.0799999199999997,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0097505710999999991
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.082180753400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.024542249700000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.010273556200000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1975,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
+            "split": "race_ethnicity_Black",
             "split_condition": 1,
             "yes": 3,
             "no": 4,
@@ -5458,129 +7056,20 @@ window.HCV_XGB_MODEL =
             "children": [
               {
                 "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1949,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0148940776
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0054493411400000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1961,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.026922693500000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0090311961199999995
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
                 "depth": 2,
                 "split": "born_usa",
                 "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.059373464399999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.035056378700000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.00048867810999999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0541804507
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 4.5300002099999999,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0099999900000001,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0070652202700000003
+                    "leaf": -0.00866534375
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0125495438
+                    "leaf": 0.00557614258
                   }
                 ]
               },
@@ -5595,11 +7084,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0112927863
+                    "leaf": 0.0371006653
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0150284562
+                    "leaf": 0.0121827833
                   }
                 ]
               }
@@ -5608,20 +7097,16 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.6399998699999996,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
             "children": [
               {
                 "nodeid": 5,
-                "leaf": -0.082346275400000002
-              },
-              {
-                "nodeid": 6,
                 "depth": 2,
-                "split": "race_ethnicityBlack",
+                "split": "race_ethnicity_Asian/Other",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -5629,11 +7114,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0219636429
+                    "leaf": -0.00889837928
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0031100911999999998
+                    "leaf": -0.0278665554
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0349759497
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.00518647302
                   }
                 ]
               }
@@ -5654,7 +7158,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.0399999600000001,
+            "split_condition": 5,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -5662,7 +7166,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "born_usa",
+                "split": "sex_Female",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -5670,124 +7174,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.013525011
+                    "leaf": 0.012035802
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0238809735
+                    "leaf": 5.5215165e-05
                   }
                 ]
               },
               {
                 "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0800000400000001,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0980712995
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -2.6319647100000001e-05
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0155568887
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.053975101599999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.055837243799999998
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.0399999600000001,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.02999997,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0239560269
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.071876816499999996
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.769999981,
+                "split_condition": 1959,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.012062368
+                    "leaf": -0.00129417621
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.022177100200000001
+                    "leaf": -0.0387350582
                   }
                 ]
               }
@@ -5796,8 +7206,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "male",
-            "split_condition": 1,
+            "split": "birth_year",
+            "split_condition": 1987,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -5806,37 +7216,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 1.30999994,
+                "split_condition": 0.280000001,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.039069045300000001
+                    "leaf": -0.00195370312
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0092467805399999992
+                    "leaf": -0.063318871
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3499999000000003,
+                "split": "birth_year",
+                "split_condition": 1995,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.0063135274700000001
+                    "leaf": -0.00524233934
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.015291720599999999
+                    "leaf": -0.04623482
                   }
                 ]
               }
@@ -5848,7 +7258,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1980,
+        "split_condition": 1994,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -5856,250 +7266,47 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.0099999900000001,
+            "split": "birth_year",
+            "split_condition": 1967,
             "yes": 3,
             "no": 4,
             "missing": 4,
             "children": [
               {
                 "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.021129239399999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.024712070799999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 5,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0026080177599999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.015861211300000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.5199999799999999,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 8.8366687099999998e-05
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.042140062899999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.055903691800000002
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1980,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1967,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0015576098799999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0215636697
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1949,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0048073874799999996
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.017632937099999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.5,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.39999998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.025570062899999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.068832389999999993
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.0399999600000003,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0511730611
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.026449292900000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1983,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.49000000999999999,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.021849036200000001
+                    "leaf": -0.0047889282
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0092007061499999997
+                    "leaf": 0.0136822583
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1924,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0820636228
+                    "leaf": -0.0173139628
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.012169343399999999
+                    "leaf": 0.0034356236
                   }
                 ]
               }
@@ -6108,7 +7315,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "race_ethnicityHispanic",
+            "split": "race_ethnicity_White",
             "split_condition": 1,
             "yes": 5,
             "no": 6,
@@ -6116,6 +7323,10 @@ window.HCV_XGB_MODEL =
             "children": [
               {
                 "nodeid": 5,
+                "leaf": -0.0534326136
+              },
+              {
+                "nodeid": 6,
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1998,
@@ -6125,639 +7336,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0112017049
+                    "leaf": -0.0045768437
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.053589146599999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.054786663499999999
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1951,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.010802499
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.018776506200000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.025603068999999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.022112127400000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.3199999299999998,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2599999899999998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0094774952199999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.092214934499999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.5699999299999998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.059379976199999997
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0235899296
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 3.5,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.022311659500000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0012826953299999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.85000002399999997,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.019895715599999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0060821520200000003
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3000001900000004,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0093958293999999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.058152433500000003
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.022616397600000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0099921589699999997
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1983,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.000204777491
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.026859615
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1942,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0103789587
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0146576455
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.018905431
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.053363394000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.054478015800000001
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1967,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0041122357400000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0219077375
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.1800000700000002,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.017575072099999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.00213638949
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.5399999600000001,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.016235102000000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.017379157199999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2599999899999998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.051783829900000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.029666278500000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1991,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00149273756
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.020063594000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1945,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.012747201099999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0125870602
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.0539824925
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.054711993799999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0109634222
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1975,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1943,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0040435809600000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.035756390499999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.00203253236
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.013318306800000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0052881222200000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0529926233
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1977,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.070048853800000005
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.055564969800000003
+                    "leaf": -0.0528486259
                   }
                 ]
               }
@@ -6777,102 +7360,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.109999999,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.056791346499999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0230985358
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0199999799999999,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0185691547
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0011130521299999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
             "split": "birth_year",
-            "split_condition": 1998,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.024479581
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.052983891200000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.052685517799999998
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1967,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
+            "split_condition": 1926,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -6880,435 +7369,74 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1950,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0120889638
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0073006502399999996
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1960,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.023789409500000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.000760282797
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1995,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.5199999799999999,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0010734846599999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0279221386
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.052946973600000002
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1985,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1968,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0017869137199999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.026044184299999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.4000001000000002,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.013445828999999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0057769864800000003
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1994,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1987,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.060125090200000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0133608058
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.053040243700000003
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.0399999600000001,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.23000000400000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.039203383000000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.022508189099999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0199999799999999,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0165742319
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0034772758399999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.22000003,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0098968548699999992
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.011419355900000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.13999999,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.093071542699999996
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0062816129099999996
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.4500000499999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.033466666899999997
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.0092265429000000006
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1965,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 2.6317813999999998e-06
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.024845024600000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.052264746299999998
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1966,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1949,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.014437834700000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0076116034799999996
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.7399997699999998,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.020389039099999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0150167514
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1998,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
+                "split": "race_ethnicity_Black",
                 "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0742830858
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0259586275
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1967,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00574854342
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00910663977
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1998,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1997,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.035871516899999997
+                    "leaf": -0.0536447354
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0034556661299999999
+                    "leaf": 0.0186232068
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.052123218800000003
+                "leaf": -0.0528196692
               }
             ]
           }
@@ -7327,7 +7455,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 3.2300000199999999,
+            "split_condition": 4.53000021,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -7335,38 +7463,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "male",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1968,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.00056036416200000005
+                    "leaf": 0.00938093942
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0121785318
+                    "leaf": -0.00496222638
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1980,
+                "split": "incomepir",
+                "split_condition": 4.94999981,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0082300668599999995
+                    "leaf": -0.0576983057
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.055354464800000003
+                    "leaf": -0.0128179938
                   }
                 ]
               }
@@ -7376,7 +7504,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 5,
+            "split_condition": 0.879999995,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -7384,7 +7512,101 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "incomepir",
+                "split_condition": 0.870000005,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0544555001
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.229734942
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0535553508
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 3.5999999,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.010501001
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.00388333551
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.349999994,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0200491603
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00668492168
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 4,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -7392,30 +7614,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.052785701999999997
+                    "leaf": -0.0379162543
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0296356417
+                    "leaf": -0.0862529725
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1995,
+                "split": "incomepir",
+                "split_condition": 4.07999992,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.200978503
+                    "leaf": 0.0474558137
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.050030749300000003
+                    "leaf": -0.01107895
                   }
                 ]
               }
@@ -7427,7 +7649,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1989,
+        "split_condition": 1977,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -7435,7 +7657,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "male",
+            "split": "born_usa",
             "split_condition": 1,
             "yes": 3,
             "no": 4,
@@ -7444,38 +7666,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.49000000999999999,
+                "split": "birth_year",
+                "split_condition": 1954,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.018392981999999999
+                    "leaf": 0.00794664025
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0060885688300000001
+                    "leaf": -0.0253063589
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3800001100000001,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.0131032532
+                    "leaf": 0.0136287976
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0085779679899999992
+                    "leaf": -0.00326374359
                   }
                 ]
               }
@@ -7485,7 +7707,319 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1998,
+            "split_condition": 1979,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0577486753
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0734951124
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1998,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0137701705
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0525255464
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 2.45000005,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.43000007,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "sex_Male",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00161539169
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00788630825
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0857460126
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0772365853
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.50999999,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0822914913
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.111741893
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 5,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.00419947784
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0185909327
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.16999996,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0177210867
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0252928641
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.13,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0112099713
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0323607139
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.17999995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "leaf": -0.103592061
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -7.34086861e-05
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.00717391586
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Male",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.49000001,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.449999988,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0032009189
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0475928672
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.639999986,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0580628924
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00339311664
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 1.65999997,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -7494,24 +8028,678 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 0.60000002399999997,
+                "split_condition": 0.730000019,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.058033671199999998
+                    "leaf": 0.00185237697
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0085467174600000004
+                    "leaf": 0.0160329621
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.051900643900000001
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.72000003,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.109775625
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.0019508882
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1968,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1949,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00651272899
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0288444795
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.76999998,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0161008723
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00478878384
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1975,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0100330748
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0344910473
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.96000004,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0145544698
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.023414785
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "born_usa",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.109999999,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0849110633
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0808517337
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.699999988,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0501924567
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.013027682
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.23000002,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00971581414
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.000112340749
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0211536791
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.00383070833
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.03999996,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.230000004,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0336715914
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0180513617
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00486362865
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0167443566
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.05999994,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.108735755
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.00121343543
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0198418405
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0120335482
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1967,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1950,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0119268727
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0133800823
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.55999994,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0144684641
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00648567034
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.45000005,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.25999999,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0139244664
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.0637566522
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 3.56999993,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0566901676
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0208819676
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1978,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.49000001,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1941,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0914830938
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0267504696
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00748371286
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0047117779
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.51999998,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00373761053
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0338862948
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0553137176
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 0.920000017,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.850000024,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0041177473
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0826889351
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.600000024,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00285846158
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.0191938337
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.24000001,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.0047608465
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.00565555412
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.18000007,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.00742994761
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.0115215713
+                  }
+                ]
               }
             ]
           }
@@ -7546,18 +8734,63 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": -0.0079083936299999998
+                    "leaf": -0.00940913241
                   },
                   {
                     "nodeid": 6,
-                    "leaf": 0.010428755499999999
+                    "leaf": 0.0101019396
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "incomepir",
+                "split_condition": 2.77999997,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00123762188
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0292201247
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0527412184
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1975,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1951,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -7565,165 +8798,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.022229569000000001
+                    "leaf": 0.00551941805
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0069156289099999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.0522688106
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1983,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1954,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0104770092
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0248110499
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0900000299999999,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0187191591
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0013876733099999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1990,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.37000000500000002,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.00160268624
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.052742619099999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.00233530137
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.051668256500000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1989,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.1599999700000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0052728951000000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.024302175299999999
+                    "leaf": -0.0237841494
                   }
                 ]
               },
@@ -7738,11 +8817,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.014782358900000001
+                    "leaf": -0.0160022881
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0086997142100000008
+                    "leaf": 0.0106577082
                   }
                 ]
               }
@@ -7751,8 +8830,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1998,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -7761,131 +8840,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1997,
+                "split_condition": 1982,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.027035525099999999
+                    "leaf": -0.0680454671
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.037809085100000001
+                    "leaf": -0.0279476643
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.051557488700000001
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 3.5999998999999998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1994,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.003022786
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.011140107200000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.051928874100000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0165988356
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1929,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.030902126799999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.074350908399999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
+                "split_condition": 1995,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.043014004799999998
+                    "leaf": 0.00200742739
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.0051313797
+                    "leaf": -0.0527086146
                   }
                 ]
               }
@@ -7897,7 +8882,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1967,
+        "split_condition": 1971,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -7905,7 +8890,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "race_ethnicityWhite",
+            "split": "race_ethnicity_White",
             "split_condition": 1,
             "yes": 3,
             "no": 4,
@@ -7922,11 +8907,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.00255579338
+                    "leaf": -0.000196486231
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.017084077
+                    "leaf": 0.0159301125
                   }
                 ]
               },
@@ -7934,18 +8919,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1949,
+                "split_condition": 1948,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0246377643
+                    "leaf": -0.0263049956
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0074514197199999996
+                    "leaf": 0.00533577474
                   }
                 ]
               }
@@ -7954,8 +8939,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.4300000700000002,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -7964,18 +8949,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 2.2599999899999998,
+                "split_condition": 0.300000012,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0051365168799999998
+                    "leaf": 0.00938037131
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.061571508599999998
+                    "leaf": -0.0310785174
                   }
                 ]
               },
@@ -7983,18 +8968,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1972,
+                "split_condition": 1986,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.066799946099999993
+                    "leaf": 0.0068750279
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.024190159499999999
+                    "leaf": -0.0215798579
                   }
                 ]
               }
@@ -8006,7 +8991,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1965,
+        "split_condition": 1992,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -8014,8 +8999,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 5,
+            "split": "birth_year",
+            "split_condition": 1966,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -8024,37 +9009,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1949,
+                "split_condition": 1953,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0015537869199999999
+                    "leaf": -0.00391252059
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.013337673600000001
+                    "leaf": 0.0103428969
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1964,
+                "split": "sex_Female",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0088650640099999997
+                    "leaf": 0.00164675235
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.098469972599999997
+                    "leaf": -0.0168907605
                   }
                 ]
               }
@@ -8063,125 +9048,20 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.4500000499999999,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
             "children": [
               {
                 "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2599999899999998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0065749287600000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.054339747899999999
-                  }
-                ]
+                "leaf": -0.0534582697
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.047828648199999997
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0157764219
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 2.66000009,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1993,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.022504022299999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0078445822000000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.026372045300000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.052515197499999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1963,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
+                "split": "sex_Female",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -8189,30 +9069,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0109909512
+                    "leaf": -0.0548784621
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0124696745
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0553761423
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.026499440900000001
+                    "leaf": -0.00382057135
                   }
                 ]
               }
@@ -8233,7 +9094,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.61000001,
+            "split_condition": 3.5999999,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -8242,37 +9103,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1939,
+                "split_condition": 1949,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0213691872
+                    "leaf": -0.00153981301
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0118129989
+                    "leaf": 0.00992800575
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1988,
+                "split": "incomepir",
+                "split_condition": 4,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.00748556945
+                    "leaf": -0.0370550118
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.086234130000000006
+                    "leaf": -0.00341509772
                   }
                 ]
               }
@@ -8281,7 +9142,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "race_ethnicityWhite",
+            "split": "race_ethnicity_White",
             "split_condition": 1,
             "yes": 5,
             "no": 6,
@@ -8289,133 +9150,39 @@ window.HCV_XGB_MODEL =
             "children": [
               {
                 "nodeid": 5,
-                "leaf": -0.053896781099999999
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0545404218
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.00938241743
+                  }
+                ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 0.85000002399999997,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.046677663899999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.033872306300000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1978,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1965,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00014021828199999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0142246131
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1924,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.077464751900000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0093639567499999993
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1981,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.065707191799999995
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.031669359699999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
+                "split_condition": 0.879999995,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.0023310848
+                    "leaf": 0.0647991225
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.051124889399999998
+                    "leaf": -0.034581583
                   }
                 ]
               }
@@ -8436,7 +9203,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 3.7699999800000001,
+            "split_condition": 4.53000021,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -8445,37 +9212,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1949,
+                "split_condition": 1991,
                 "yes": 5,
                 "no": 6,
                 "missing": 6,
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": -0.0061648692899999996
+                    "leaf": 0.00646673841
                   },
                   {
                     "nodeid": 6,
-                    "leaf": 0.0081878472099999999
+                    "leaf": -0.0245453287
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
+                "split": "birth_year",
+                "split_condition": 1994,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.067197442100000004
+                    "leaf": -0.0119644944
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0063892598299999997
+                    "leaf": 0.162271306
                   }
                 ]
               }
@@ -8483,15 +9250,79 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "leaf": -0.051150321999999998
+            "leaf": -0.0518357754
           }
         ]
       },
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "born_usa",
-        "split_condition": 1,
+        "split": "birth_year",
+        "split_condition": 1994,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.15999997,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": -0.0346911028
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": -0.0102015389
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.01999998,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.014294927
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.000238790919
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0525509082
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1994,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -8500,7 +9331,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1954,
+            "split_condition": 1967,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -8508,38 +9339,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1932,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.074960552200000002
+                    "leaf": 0.0107029621
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0053908433800000004
+                    "leaf": -0.00114113267
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1955,
+                "split": "incomepir",
+                "split_condition": 2.77999997,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0997283682
+                    "leaf": 0.000332135183
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0319197066
+                    "leaf": -0.0318512544
                   }
                 ]
               }
@@ -8548,8 +9379,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1995,
+            "split": "incomepir",
+            "split_condition": 0.879999995,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -8557,25 +9388,134 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1945,
+                "split": "incomepir",
+                "split_condition": 0.870000005,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0101255467
+                    "leaf": -0.0525605753
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0065932492699999996
+                    "leaf": 0.230448321
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.051726516299999997
+                "leaf": -0.0520356596
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00251668016
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00523112202
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0381480865
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00568231195
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Asian/Other",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.00771903945
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.000646923785
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0383258723
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0326722935
+                  }
+                ]
               }
             ]
           }
@@ -8585,7 +9525,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1975,
+        "split_condition": 1982,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -8593,7 +9533,210 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "male",
+            "split": "incomepir",
+            "split_condition": 1.09000003,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.08000004,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0114095453
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0473487899
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00358933513
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00584285054
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.879999995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.779999971,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0156774726
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.0674187392
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0372254662
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": 0.0177367087
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1983,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00341000571
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0203418266
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.010243292
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00268543605
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1998,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1988,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0356009416
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.00087810494
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0514844172
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1998,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
             "split_condition": 1,
             "yes": 3,
             "no": 4,
@@ -8603,18 +9746,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1924,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
+                "split_condition": 1953,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
                 "children": [
                   {
-                    "nodeid": 7,
-                    "leaf": 0.0531032793
+                    "nodeid": 5,
+                    "leaf": 0.00815529004
                   },
                   {
-                    "nodeid": 8,
-                    "leaf": -0.0051731290300000001
+                    "nodeid": 6,
+                    "leaf": -0.0179173313
                   }
                 ]
               },
@@ -8622,18 +9765,82 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1925,
+                "split_condition": 1951,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00453040889
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00750384713
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0513785295
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "incomepir",
+        "split_condition": 1.16999996,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.109999999,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.051369179
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0173556563
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.25999999,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.075646467499999995
+                    "leaf": -0.00827159267
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0074997306800000003
+                    "leaf": 0.00999716669
                   }
                 ]
               }
@@ -8642,8 +9849,102 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
+            "split": "incomepir",
+            "split_condition": 1.17999995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "leaf": -0.103819333
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.000788080215
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0210870653
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 4.38000011,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.30999994,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.012846333
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00416531553
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.80000019,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.0653416663
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00737837842
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.49000001,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -8651,38 +9952,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1991,
+                "split": "incomepir",
+                "split_condition": 0.449999988,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.021902803299999999
+                    "leaf": 0.00428335834
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.052878528799999998
+                    "leaf": 0.0410861187
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
+                "split": "incomepir",
+                "split_condition": 0.600000024,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.0026235089199999999
+                    "leaf": -0.0669460297
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.050641950200000001
+                    "leaf": -0.00564821297
                   }
                 ]
               }
@@ -8703,7 +10004,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.0399999600000001,
+            "split_condition": 2.45000005,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -8719,11 +10020,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0081163803100000008
+                    "leaf": -0.00914643798
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0150495982
+                    "leaf": 0.00653152913
                   }
                 ]
               },
@@ -8731,18 +10032,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1960,
+                "split_condition": 1967,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.0034938973799999999
+                    "leaf": -0.00034005518
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0075667412000000002
+                    "leaf": -0.0263678078
                   }
                 ]
               }
@@ -8752,7 +10053,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 0.87999999500000003,
+            "split_condition": 0.879999995,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -8761,24 +10062,24 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 0.87000000499999997,
+                "split_condition": 0.870000005,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.052044726899999998
+                    "leaf": -0.0523714386
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.32018849300000002
+                    "leaf": 0.175915375
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.051503803600000002
+                "leaf": -0.0517908931
               }
             ]
           }
@@ -8788,7 +10089,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1998,
+        "split_condition": 1977,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -8796,8 +10097,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "male",
-            "split_condition": 1,
+            "split": "birth_year",
+            "split_condition": 1941,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -8805,102 +10106,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.0015759998899999999
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.0185915101
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1924,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.073180876699999994
+                    "leaf": -0.0172306504
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0053618885599999999
+                    "leaf": 0.0464203395
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050815075600000002
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1993,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.85000002399999997,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
+              },
               {
-                "nodeid": 3,
+                "nodeid": 4,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 0.769999981,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0087207872399999997
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.029770715199999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1982,
+                "split_condition": 4.55999994,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0015510818900000001
+                    "leaf": 0.00948626082
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.021642301199999998
+                    "leaf": -0.0113958558
                   }
                 ]
               }
@@ -8910,7 +10147,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 0.87999999500000003,
+            "split_condition": 0.769999981,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -8918,25 +10155,149 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87000000499999997,
+                "split": "birth_year",
+                "split_condition": 1985,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0526713319
+                    "leaf": -0.0259828269
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.23374281799999999
+                    "leaf": -0.0591035672
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.051896728599999997
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.810000002,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0818847343
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0133194132
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1967,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.839999974,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "sex_Female",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0243693758
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00713173905
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.850000024,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": -0.144673422
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 0.00221724971
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.77999997,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": 0.00195161963
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0322596952
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1972,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0723400787
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.0205758791
+                  }
+                ]
               }
             ]
           }
@@ -8954,619 +10315,6 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1966,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0016527989600000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0211788137
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1924,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.071407526700000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0059341061899999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 5,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.1599999700000001,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.020220268499999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.052674558000000003
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.14013779200000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.049914330200000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1993,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1954,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0062237517000000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0286972411
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1949,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0090743359199999991
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0062792426899999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.051539372700000002
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1997,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0538980477
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0059746154599999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1951,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.011168721100000001
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.019412919899999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1952,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0067384140599999996
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0083997799100000003
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050587814299999999
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1995,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1943,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1937,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -2.7461432199999998e-05
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.028770489600000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1968,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0054554301300000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0047493376800000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.051191579600000002
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.0199999799999999,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.58999997400000004,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0031313288500000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.018249727800000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.49000000999999999,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.019749415999999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.019535822800000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.02999997,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.109946303
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.00197774335
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.024307260300000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0082131000199999991
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "race_ethnicityBlack",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.49000000999999999,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.016539143400000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.015917204300000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1928,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.070517972100000006
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0022912237299999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1960,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1936,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.00315495557
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0212423783
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.2000000499999999,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0022682552199999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.056808341300000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.1699999599999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.0176410023
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.011457698400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1926,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.040228594100000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.00356077706
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.0504472516
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1993,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
             "split": "birth_year",
             "split_condition": 1949,
             "yes": 3,
@@ -9576,7 +10324,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -9584,11 +10332,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0051474715600000002
+                    "leaf": 0.00443628384
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.016244454299999999
+                    "leaf": -0.0195187256
                   }
                 ]
               },
@@ -9596,394 +10344,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1966,
+                "split_condition": 1967,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.0086072739200000001
+                    "leaf": 0.0103034703
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0030808427799999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.051402676899999999
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1997,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.053568471200000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.012623712400000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 3.47000003,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.16000009,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0076955258799999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0040832133999999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.2300000199999999,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0439151786
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.00763706071
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.69000006,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.033194404099999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0084352782000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3499999000000003,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.028759060400000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.021399609699999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1995,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.55999994,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1978,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.0049322280100000003
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.0092025510999999994
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.012930727600000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.39148443900000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.051045894600000002
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "male",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1980,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.49000000999999999,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0237302203
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0072665899100000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 5,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.039307679999999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.033220894600000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.3800001100000001,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0088683124599999996
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0513022915
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.8000001900000004,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.065219253300000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0058728917500000003
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1989,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1987,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1986,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.00069207791199999997
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.058947946899999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.30999994,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.050398271500000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.053262598799999998
+                    "leaf": -0.00263994117
                   }
                 ]
               }
@@ -10000,39 +10372,24 @@ window.HCV_XGB_MODEL =
             "children": [
               {
                 "nodeid": 5,
+                "leaf": -0.0541038886
+              },
+              {
+                "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
+                "split": "sex_Male",
+                "split_condition": 1,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.0064595364999999998
+                    "leaf": 0.154025629
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.053889025
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.050817232599999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.10281016699999999
+                    "leaf": -0.049766317
                   }
                 ]
               }
@@ -10043,8 +10400,8 @@ window.HCV_XGB_MODEL =
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "male",
-        "split_condition": 1,
+        "split": "birth_year",
+        "split_condition": 1966,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -10052,8 +10409,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.3000001900000004,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -10061,38 +10418,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.7100000400000002,
+                "split": "birth_year",
+                "split_condition": 1960,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0045054676000000002
+                    "leaf": 0.0101178065
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.044411975899999998
+                    "leaf": -0.00422383333
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.5300002099999999,
+                "split": "birth_year",
+                "split_condition": 1952,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.058682896200000001
+                    "leaf": -0.0166953411
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.00077731872399999997
+                    "leaf": 0.00686432794
                   }
                 ]
               }
@@ -10102,7 +10459,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.6599999700000001,
+            "split_condition": 2.45000005,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -10111,37 +10468,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 1.0800000400000001,
+                "split_condition": 2.25999999,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0054488386999999999
+                    "leaf": -0.0119592166
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0187949743
+                    "leaf": 0.0642047003
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.72000003,
+                "split": "birth_year",
+                "split_condition": 1967,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.118084684
+                    "leaf": -0.0954563394
                   },
                   {
                     "nodeid": 14,
-                    "leaf": 0.0018499182800000001
+                    "leaf": -0.033131104
                   }
                 ]
               }
@@ -10162,7 +10519,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1943,
+            "split_condition": 1945,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -10170,83 +10527,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1929,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 5,
                 "no": 6,
                 "missing": 6,
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": 0.0140529079
+                    "leaf": -4.85451055e-05
                   },
                   {
                     "nodeid": 6,
-                    "leaf": -0.013857032199999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1963,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0075520807900000004
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0027348180299999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050198156399999999
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1967,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1955,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0055583869100000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0067301476399999997
+                    "leaf": -0.0274526216
                   }
                 ]
               },
@@ -10255,126 +10548,17 @@ window.HCV_XGB_MODEL =
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1960,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.016229154499999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.016770161700000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 5,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.9499998099999996,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0057202917500000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.18904952699999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.059495657700000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0088451085600000003
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1967,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1952,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0098447976599999997
+                    "leaf": 0.00795825757
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0068750963500000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1961,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.014412663900000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.00650859345
+                    "leaf": -0.00359130255
                   }
                 ]
               }
@@ -10382,1402 +10566,7 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityHispanic",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.00258871308
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.022353647300000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1983,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0142526692
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.053404636700000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.109999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1959,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.037781376399999997
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.034184880600000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1962,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0039001700900000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0041906139799999997
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050101514899999998
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1989,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0399999600000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0061567514200000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.011814638000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1924,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.069912373999999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.00628254795
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.87999999500000003,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.83999997400000004,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.035948924700000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.159401238
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "leaf": -0.053529620200000003
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 4.55999994,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.3000001900000004,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.19000006,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00099567917599999991
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.088293202200000004
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.061141479800000002
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0076388516500000003
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.6399998699999996,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.080106079600000005
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.030969226700000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0081510087500000009
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.0399999600000001,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.109999999,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.052976366099999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.020433362600000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.25999999000000001,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0097244288800000002
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.013553901599999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.0800000400000001,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.017833854999999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.091092728100000006
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0900000299999999,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.038530331100000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.00041643521400000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.91000002599999996,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1997,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.0070716901699999996
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.13963906500000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1923,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.042683344300000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.00037285318799999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.049993135000000001
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1968,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0225695502
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0111003248
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1931,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.026170490300000002
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0048369150600000004
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.039031892999999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0105808303
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1969,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.049352418600000003
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0033285771499999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1995,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1990,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1989,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.00076605053600000003
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.056686740399999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.60000002399999997,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.056621413699999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.043993808299999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050777066500000002
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1967,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0048532388200000004
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.012520154
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1952,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.020781535699999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0095421383200000008
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.7100000400000002,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2599999899999998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.00718195876
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.034514308
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.064091295000000006
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0121662309
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1920,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.89999997600000003,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.0129927462
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.070640630999999995
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1929,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0239787139
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.00128706044
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.049832370100000002
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 0.38999998600000002,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1988,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1949,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.049783680599999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.024535631799999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "leaf": -0.057488530900000001
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1967,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1929,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0173947606
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.00053018535299999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.56999999300000004,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.066486701400000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0072188973399999997
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 4.55999994,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3499999000000003,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0024621391199999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.052776247300000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.079999998200000005,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.036063358199999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0088260807099999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.6399998699999996,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.079355701799999998
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.031373243799999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0047897803599999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1960,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0124019878
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.013143660499999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1952,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.017236689100000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0102254171
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.27999997,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.769999981,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0051733641899999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.011519487
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.35000002,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.054807282999999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.010683204
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1929,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.8799999999999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0084585957199999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.071072533699999996
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.9499998099999996,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.071914523800000005
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0628533587
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1933,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 5,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.042518261799999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.077036425500000005
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.55999994,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.0028306662600000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0094809560099999995
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "race_ethnicityAsian/Other",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1941,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1929,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0133574521
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0192671549
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1965,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0067002708099999997
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0039221639699999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1993,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1934,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.041318174499999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0328348875
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.31684348000000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.047814156900000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1995,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1987,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1986,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.00030304185900000002
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.058058541300000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.035635646399999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.052974041600000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050647784000000001
+            "leaf": -0.05105225
           }
         ]
       },
@@ -11794,7 +10583,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.1599999700000001,
+            "split_condition": 3.20000005,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -11803,18 +10592,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 0.37000000500000002,
+                "split_condition": 2.18000007,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.01038385
+                    "leaf": -0.00975920912
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.042620263999999998
+                    "leaf": -0.0482927598
                   }
                 ]
               },
@@ -11822,18 +10611,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 1.3700000000000001,
+                "split_condition": 4.38000011,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.0282293949
+                    "leaf": 0.0550268851
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0105181597
+                    "leaf": -0.0365969092
                   }
                 ]
               }
@@ -11842,8 +10631,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "male",
-            "split_condition": 1,
+            "split": "incomepir",
+            "split_condition": 1.16999996,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -11851,38 +10640,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0099999900000001,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0035056013100000002
+                    "leaf": 0.0123765068
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0094165112799999996
+                    "leaf": -0.0049640215
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 5,
+                "split": "sex_Male",
+                "split_condition": 1,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.00620298833
+                    "leaf": -0.0073106722
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.011857236700000001
+                    "leaf": 0.0038717303
                   }
                 ]
               }
@@ -11902,8 +10691,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1997,
+            "split": "incomepir",
+            "split_condition": 1.16999996,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -11912,320 +10701,23 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1994,
+                "split_condition": 1971,
                 "yes": 5,
                 "no": 6,
                 "missing": 6,
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": 0.00036339924599999997
+                    "leaf": 0.0111031961
                   },
                   {
                     "nodeid": 6,
-                    "leaf": -0.051541097500000001
+                    "leaf": -0.00339444657
                   }
                 ]
               },
               {
                 "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0461728312
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.12745869200000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.049662716699999998
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1929,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.070612244300000002
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.027768237500000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.026405153800000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.00220926385
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.049581456900000001
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 3.5,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1998,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1997,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0036564767400000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.078487329199999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "leaf": -0.0493611656
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1958,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.0035254869099999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0178546347
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0279672202
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.077169053299999998
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1988,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1919,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "leaf": -0.071635663500000002
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1921,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.041837211700000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.00135849125
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1989,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.00096127419999999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.053474284699999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1990,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.061895944199999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.031352363500000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1937,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityAsian/Other",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1929,
@@ -12235,30 +10727,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0185700208
+                    "leaf": 0.0248857345
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.00012010683
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.079066745899999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.113559306
+                    "leaf": -0.00262839766
                   }
                 ]
               }
@@ -12266,60 +10739,15 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1945,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.033373665099999998
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.011872388399999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0143789621
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0024710574699999999
-                  }
-                ]
-              }
-            ]
+            "leaf": -0.0509692319
           }
         ]
       },
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "male",
-        "split_condition": 1,
+        "split": "birth_year",
+        "split_condition": 1998,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -12327,8 +10755,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1924,
+            "split": "born_usa",
+            "split_condition": 1,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -12336,19 +10764,147 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1953,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": 0.01254158
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": -0.0218348205
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
                 "split": "incomepir",
-                "split_condition": 1.8799999999999999,
+                "split_condition": 1.16999996,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.00817083381
+                    "leaf": 0.00946367066
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.10001676499999999
+                    "leaf": -0.000468261918
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0508854091
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1995,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1945,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": -0.0128577603
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": 0.00854944717
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1924,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0658244044
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.00622699875
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0514329933
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1945,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1933,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0210811663
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.00418897066
                   }
                 ]
               },
@@ -12363,11 +10919,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.048157449800000002
+                    "leaf": 0.00602645939
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.00405800715
+                    "leaf": -0.0530182198
                   }
                 ]
               }
@@ -12377,7 +10933,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1942,
+            "split_condition": 1967,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -12385,26 +10941,26 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1946,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.034604612700000002
+                    "leaf": 0.0293600243
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.026744425299999999
+                    "leaf": 0.00680713495
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "born_usa",
+                "split": "sex_Female",
                 "split_condition": 1,
                 "yes": 13,
                 "no": 14,
@@ -12412,229 +10968,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.0076826247400000004
+                    "leaf": 0.00332526374
                   },
                   {
                     "nodeid": 14,
-                    "leaf": 0.0102238143
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 0.0299999993,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1954,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1944,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.083153583099999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.17547617900000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1988,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.036000758399999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.052358526699999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1966,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0061125233800000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0045680231400000004
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.015588938300000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0044998079500000003
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 1.61000001,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1929,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1920,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00703392411
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.087005555600000006
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.60000002,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0052932691799999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0578348599
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1936,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.55999994,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.017211256500000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.041605848799999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1942,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.036102250199999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0050000245699999999
+                    "leaf": -0.0180584919
                   }
                 ]
               }
@@ -12646,7 +10984,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1933,
+        "split_condition": 1994,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -12654,8 +10992,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.4600000399999999,
+            "split": "sex_Female",
+            "split_condition": 1,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -12664,37 +11002,195 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1927,
+                "split_condition": 1924,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.024653935799999999
+                    "leaf": -0.0784703195
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.086132854199999997
+                    "leaf": 0.0066501284
                   }
                 ]
               },
               {
                 "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1924,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0612289123
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00364793628
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 0.879999995,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.870000005,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.051730454
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.169009373
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "leaf": -0.0513658412
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1994,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "sex_Female",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1925,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": -0.0768952072
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": 0.00467853062
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1924,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0577124059
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.00672726333
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0516587272
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1966,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1945,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.94999981,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00395932933
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.054759223
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 0.829999983,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.0389206
+                    "leaf": 0.0154768303
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0080504352200000007
+                    "leaf": 0.00419292366
                   }
                 ]
               }
@@ -12703,8 +11199,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.0399999600000001,
+            "split": "race_ethnicity_Black",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -12713,18 +11209,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 0.69999998799999996,
+                "split_condition": 0.620000005,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0023545289900000002
+                    "leaf": 0.0160905626
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.013673866200000001
+                    "leaf": -0.0113758175
                   }
                 ]
               },
@@ -12732,18 +11228,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1959,
+                "split_condition": 1987,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.0046564484900000003
+                    "leaf": -0.0424350016
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.0056339711899999999
+                    "leaf": 0.00641455641
                   }
                 ]
               }
@@ -12754,8 +11250,8 @@ window.HCV_XGB_MODEL =
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "male",
-        "split_condition": 1,
+        "split": "birth_year",
+        "split_condition": 1985,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -12763,8 +11259,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "race_ethnicityBlack",
-            "split_condition": 1,
+            "split": "incomepir",
+            "split_condition": 0.49000001,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -12772,38 +11268,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.0299999993,
+                "split": "birth_year",
+                "split_condition": 1984,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.024745605899999999
+                    "leaf": 0.0125414301
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0059271147500000003
+                    "leaf": 0.108903162
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.88999998599999997,
+                "split": "sex_Female",
+                "split_condition": 1,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.010334989100000001
+                    "leaf": 0.00605156366
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0077921594499999998
+                    "leaf": -0.00406851759
                   }
                 ]
               }
@@ -12813,124 +11309,19 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 4.3800001100000001,
+            "split_condition": 0.600000024,
             "yes": 5,
             "no": 6,
             "missing": 6,
             "children": [
               {
                 "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0046658716200000004
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.037163294899999998
-                  }
-                ]
+                "leaf": -0.0587191395
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.8000001900000004,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.063518896699999994
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.00050252734200000005
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "male",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityAsian/Other",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.34999999399999998,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.018159665200000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0039542983299999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.980000019,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.076294474299999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.017172640199999999
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.079999998200000005,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
+                "split": "race_ethnicity_Hispanic",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -12938,30 +11329,229 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.093659035900000007
+                    "leaf": -0.00419396954
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.010576743600000001
+                    "leaf": -0.0528125651
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1992,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "born_usa",
+            "split_condition": 1,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1953,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00897437427
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0182192605
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 1.01999998,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0095305061
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": 2.57085048e-05
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 5,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1997,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0546554998
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.024660144
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.109999999,
+                "split": "birth_year",
+                "split_condition": 1995,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.0586969741
+                    "leaf": 0.199983135
                   },
                   {
                     "nodeid": 14,
-                    "leaf": 0.0050912112899999997
+                    "leaf": -0.0472279377
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1975,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1949,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00783674326
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0234560315
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00748304604
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0140376287
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_White",
+            "split_condition": 1,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1982,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.06706395
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": -0.0174759049
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1985,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.0146251218
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.017055599
                   }
                 ]
               }
@@ -12982,7 +11572,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1936,
+            "split_condition": 1937,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -12990,38 +11580,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 1.88,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0074760275899999999
+                    "leaf": -0.0220765807
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.077091477800000002
+                    "leaf": 0.0149445552
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 1.47000003,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.063790284099999997
+                    "leaf": -0.00862190779
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0045184306800000002
+                    "leaf": -0.0802624673
                   }
                 ]
               }
@@ -13030,8 +11620,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.4500000499999999,
+            "split": "birth_year",
+            "split_condition": 1962,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -13039,19 +11629,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.4000001000000002,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0047196969400000004
+                    "leaf": 0.00196111365
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.050422050099999997
+                    "leaf": 0.0132099912
                   }
                 ]
               },
@@ -13059,18 +11649,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1966,
+                "split_condition": 1998,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.000341204315
+                    "leaf": -0.00533002755
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.031632900200000001
+                    "leaf": -0.0504867621
                   }
                 ]
               }
@@ -13081,7 +11671,71 @@ window.HCV_XGB_MODEL =
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "born_usa",
+        "split": "birth_year",
+        "split_condition": 1998,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.76999998,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1927,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": 0.0300602522
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": 0.00385012268
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1994,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00486618327
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.147353247
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0504181497
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
         "split_condition": 1,
         "yes": 1,
         "no": 2,
@@ -13091,7 +11745,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1954,
+            "split_condition": 1924,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -13099,38 +11753,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1932,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.069716714299999996
+                    "leaf": -0.0966481343
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0184247456
+                    "leaf": -0.0657142997
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1998,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0050523486000000001
+                    "leaf": 0.00596853113
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.031429264700000001
+                    "leaf": -0.0501094125
                   }
                 ]
               }
@@ -13140,7 +11794,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1929,
+            "split_condition": 1922,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -13149,18 +11803,191 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1916,
+                "split_condition": 1919,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.071381233599999996
+                    "leaf": -0.0728402361
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.027607051699999999
+                    "leaf": 0.0637695789
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "born_usa",
+                "split_condition": 1,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0190801397
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.00430684537
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1995,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.47000003,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1949,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": -0.00362002826
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": 0.00478003779
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1994,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.00855986495
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.25926286
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0509800501
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "sex_Female",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1924,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0676987693
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.103027575
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.07999992,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.00679762755
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.00926211383
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1971,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1954,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0105455229
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.00540839927
                   }
                 ]
               },
@@ -13168,18 +11995,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1953,
+                "split_condition": 1973,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.0048644444899999997
+                    "leaf": -0.08561147
                   },
                   {
                     "nodeid": 14,
-                    "leaf": 0.0062093101400000003
+                    "leaf": -0.0180227533
                   }
                 ]
               }
@@ -13200,464 +12027,54 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1997,
+            "split_condition": 1929,
             "yes": 3,
             "no": 4,
             "missing": 4,
             "children": [
               {
                 "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1982,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.00070694921300000003
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.011069585599999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.046156104699999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.097360037299999994
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.049475021700000003
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 5,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.9000000999999997,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1926,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.024593276899999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0014580473099999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1979,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0149770202
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.25246980800000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1942,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.067070327700000001
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1947,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.020133791500000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.011651379999999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1994,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.0399999600000001,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1977,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.0083772596000000008
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.0049530663500000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.0800000400000001,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.048060841899999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0039755934800000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.051230896300000002
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1995,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.5300002099999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.0015146518099999999
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.00681584654
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1994,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0098225679200000006
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.270663351
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.050606727599999998
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1987,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1986,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1967,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0026687739900000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.00634444971
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "leaf": -0.0580585115
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.60000002399999997,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
                 "depth": 2,
                 "split": "born_usa",
                 "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
                 "children": [
                   {
-                    "nodeid": 9,
-                    "leaf": 0.111508183
+                    "nodeid": 5,
+                    "leaf": -0.0720211565
                   },
                   {
-                    "nodeid": 10,
-                    "leaf": -0.059029489800000001
+                    "nodeid": 6,
+                    "leaf": 0.0284074936
                   }
                 ]
               },
               {
-                "nodeid": 6,
+                "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.62000000499999997,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.14280237300000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.019523138200000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1987,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1986,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1933,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0040340027800000004
+                    "leaf": -0.0387397148
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0027916191600000002
+                    "leaf": -5.93907862e-05
                   }
                 ]
-              },
-              {
-                "nodeid": 4,
-                "leaf": -0.057526130199999997
               }
             ]
           },
           {
             "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.60000002399999997,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.094325617
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.058595754200000003
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.62000000499999997,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.124899782
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.017582865400000001
-                  }
-                ]
-              }
-            ]
+            "leaf": -0.0502158105
           }
         ]
       },
@@ -13682,7 +12099,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -13690,30 +12107,30 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0084344949600000003
+                    "leaf": 0.00386182102
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.019022498299999999
+                    "leaf": -0.015142167
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 2.17000008,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.0109751187
+                    "leaf": 0.0122825624
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.0099192401400000005
+                    "leaf": -0.00318627246
                   }
                 ]
               }
@@ -13723,7 +12140,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.30999994,
+            "split_condition": 2.77999997,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -13731,38 +12148,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 2.25999999,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.00968926866
+                    "leaf": -0.00731063727
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0097245164200000008
+                    "leaf": 0.0282135047
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.42999995,
+                "split": "birth_year",
+                "split_condition": 1979,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.078692793799999994
+                    "leaf": -0.0559108965
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.0144506088
+                    "leaf": -0.0107675688
                   }
                 ]
               }
@@ -13773,8 +12190,8 @@ window.HCV_XGB_MODEL =
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1998,
+        "split": "sex_Male",
+        "split_condition": 1,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -13783,7 +12200,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 0.30000001199999998,
+            "split_condition": 0.349999994,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -13793,159 +12210,46 @@ window.HCV_XGB_MODEL =
                 "depth": 2,
                 "split": "birth_year",
                 "split_condition": 1952,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": -0.076934173699999997
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.020413639000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.33000001299999998,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.106156923
+                    "leaf": -0.124166071
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0016823433100000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.049258846799999999
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1994,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.83999997400000004,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.769999981,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.00380900106
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": 0.0282639451
+                    "leaf": 0.0254696403
                   }
                 ]
               },
               {
                 "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.86000001400000003,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.090944193300000004
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0020037752100000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "leaf": -0.051285680399999999
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 0.49000000999999999,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1988,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1946,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
+                "split_condition": 1965,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
                 "children": [
                   {
-                    "nodeid": 7,
-                    "leaf": -0.030134558700000001
+                    "nodeid": 9,
+                    "leaf": -0.00280693849
                   },
                   {
-                    "nodeid": 8,
-                    "leaf": 0.020524071500000001
+                    "nodeid": 10,
+                    "leaf": -0.0165512413
                   }
                 ]
-              },
-              {
-                "nodeid": 4,
-                "leaf": -0.056701935799999999
               }
             ]
           },
           {
             "nodeid": 2,
             "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.56999999300000004,
+            "split": "birth_year",
+            "split_condition": 1924,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -13953,19 +12257,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "male",
+                "split": "race_ethnicity_White",
                 "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
                 "children": [
                   {
-                    "nodeid": 9,
-                    "leaf": -0.081338807900000004
+                    "nodeid": 11,
+                    "leaf": -0.0902781039
                   },
                   {
-                    "nodeid": 10,
-                    "leaf": -0.025689585099999999
+                    "nodeid": 12,
+                    "leaf": -0.0637263283
                   }
                 ]
               },
@@ -13973,18 +12277,127 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 1.94000006,
+                "split_condition": 4.38000011,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": 0.00791485608
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.00904243533
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "born_usa",
+        "split_condition": 1,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 3.31999993,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.18000007,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": -0.0115441913
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0642702803
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4.38000011,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.0566868261
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0337785296
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.45000005,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.4000001,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0036140517300000002
+                    "leaf": 0.00245599635
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0033240479
+                    "leaf": 0.0509175435
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 2.75,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0352997743
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.000609252718
                   }
                 ]
               }
@@ -14004,8 +12417,8 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "male",
-            "split_condition": 1,
+            "split": "incomepir",
+            "split_condition": 3.76999998,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -14014,18 +12427,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1994,
+                "split_condition": 1926,
                 "yes": 5,
                 "no": 6,
                 "missing": 6,
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": -0.0024798868700000001
+                    "leaf": 0.033552397
                   },
                   {
                     "nodeid": 6,
-                    "leaf": 0.136292785
+                    "leaf": 0.00127205602
                   }
                 ]
               },
@@ -14033,18 +12446,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1924,
+                "split_condition": 1994,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.070326261200000004
+                    "leaf": -0.00991427526
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.00487623643
+                    "leaf": 0.226883486
                   }
                 ]
               }
@@ -14052,7 +12465,7 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "leaf": -0.050395335999999999
+            "leaf": -0.0508868806
           }
         ]
       },
@@ -14060,125 +12473,16 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "incomepir",
-        "split_condition": 1.0399999600000001,
+        "split_condition": 1.91999996,
         "yes": 1,
         "no": 2,
         "missing": 2,
         "children": [
           {
             "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.980000019,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0061326199200000004
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.011999142399999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1982,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.029373949399999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0587876923
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1926,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.4600000399999999,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.071478895799999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.042523737999999998
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1945,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0138886785
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.00127111748
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "born_usa",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.2000000499999999,
+            "split_condition": 1949,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -14186,38 +12490,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2400000100000002,
+                "split": "race_ethnicity_Black",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0067089274499999999
+                    "leaf": -0.014310888
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.063313804599999995
+                    "leaf": 0.00965139177
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4.3800001100000001,
+                "split": "birth_year",
+                "split_condition": 1977,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.048438310599999999
+                    "leaf": 0.0101917116
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.023528858999999999
+                    "leaf": -0.00422373228
                   }
                 ]
               }
@@ -14227,7 +12531,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 1.1699999599999999,
+            "split_condition": 2.01999998,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -14235,38 +12539,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1958,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0121975252
+                    "leaf": -0.112269439
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0043529258099999999
+                    "leaf": -0.0259735566
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 1.17999995,
+                "split": "birth_year",
+                "split_condition": 1966,
                 "yes": 13,
                 "no": 14,
                 "missing": 14,
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": -0.123959377
+                    "leaf": 0.00105051498
                   },
                   {
                     "nodeid": 14,
-                    "leaf": -0.00020741035399999999
+                    "leaf": -0.0200557988
                   }
                 ]
               }
@@ -14278,7 +12582,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "incomepir",
-        "split_condition": 1.0399999600000001,
+        "split_condition": 4.55999994,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -14287,7 +12591,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1933,
+            "split_condition": 1998,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -14295,40 +12599,25 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1922,
+                "split": "incomepir",
+                "split_condition": 4.23000002,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0149546908
+                    "leaf": 0.00319472514
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.092068694500000006
+                    "leaf": 0.0271712225
                   }
                 ]
               },
               {
                 "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1942,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.026968201599999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0047991960300000002
-                  }
-                ]
+                "leaf": -0.0500411503
               }
             ]
           },
@@ -14336,7 +12625,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1963,
+            "split_condition": 1931,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -14344,128 +12633,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0037461630999999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.011202503000000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1964,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.079343482899999998
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0082536255900000008
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 3.16000009,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.8900001,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.012089031700000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0020403843400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
+                "split_condition": 1928,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.088672019500000004
+                    "leaf": -0.0616518557
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0137258871
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 3.47000003,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.064083278199999996
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.00803678855
+                    "leaf": 0.125457257
                   }
                 ]
               },
@@ -14473,221 +12653,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 6,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 4,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.010523318300000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0054903663700000003
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "male",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1989,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1952,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0106037771
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.000174509099
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 5,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.054038412899999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.116209865
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1924,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.069044306900000005
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1934,
+                "split_condition": 4.80000019,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0259897597
+                    "leaf": -0.082097277
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.0020697847900000002
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 0.49000000999999999,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.47999998900000002,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.0299999993,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.019004911199999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0036074593700000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0118937939
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.071744166299999995
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.519999981,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.12782548399999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.081403009600000006
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.56999999300000004,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.034750800599999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.00086573400800000002
+                    "leaf": -0.00925956108
                   }
                 ]
               }
@@ -14708,7 +12685,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1990,
+            "split_condition": 1987,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -14717,37 +12694,37 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1989,
+                "split_condition": 1977,
                 "yes": 5,
                 "no": 6,
                 "missing": 6,
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": 0.00152448274
+                    "leaf": 0.000572124496
                   },
                   {
                     "nodeid": 6,
-                    "leaf": -0.055857062300000003
+                    "leaf": -0.0178596228
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 0.600000024,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0081127388399999997
+                    "leaf": -0.0307572614
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.143764064
+                    "leaf": 0.0251034331
                   }
                 ]
               }
@@ -14755,7 +12732,7 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "leaf": -0.048992160700000002
+            "leaf": -0.0499894284
           }
         ]
       },
@@ -14763,7 +12740,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "incomepir",
-        "split_condition": 2.4500000499999999,
+        "split_condition": 4.07999992,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -14772,7 +12749,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "incomepir",
-            "split_condition": 2.4300000700000002,
+            "split_condition": 4.03999996,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -14780,26 +12757,26 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.769999981,
+                "split": "sex_Female",
+                "split_condition": 1,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.0043872678700000002
+                    "leaf": 0.00350771449
                   },
                   {
                     "nodeid": 8,
-                    "leaf": 0.0041285068699999997
+                    "leaf": -0.0046405769
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "race_ethnicityWhite",
+                "split": "sex_Female",
                 "split_condition": 1,
                 "yes": 9,
                 "no": 10,
@@ -14807,338 +12784,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": -0.094348452999999999
+                    "leaf": 0.107357882
                   },
                   {
                     "nodeid": 10,
-                    "leaf": 0.069833189200000007
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.5099999899999998,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.089039959000000002
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.12986825399999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0016721811799999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.028788065500000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "born_usa",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.1200000000000001,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.46000000800000002,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.011743526900000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.055620428200000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1954,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0183846857
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0125095667
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1952,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.37000000500000002,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.12541531
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0028118477199999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1960,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.013773045500000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.00047433754700000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 0.69999998799999996,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.68000000699999996,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.38999998600000002,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0038635525899999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.0150558325
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.076502367900000007
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.130440742
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.87999999500000003,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.769999981,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.0068991049200000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0233786944
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.88999998599999997,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.083153747
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.00085219164599999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1949,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "race_ethnicityWhite",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1933,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.015847383100000001
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0067326920100000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.056102272100000003
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.025580003899999999
+                    "leaf": -0.070643805
                   }
                 ]
               }
@@ -15156,116 +12806,7 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1954,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.018338663500000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.022573046400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1993,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.0051825125699999997
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0282850303
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "race_ethnicityWhite",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "race_ethnicityBlack",
-                "split_condition": 1,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.0042915483900000002
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.027157714600000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.0036409241099999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.0147559745
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "male",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
+                "split": "race_ethnicity_Asian/Other",
                 "split_condition": 1,
                 "yes": 11,
                 "no": 12,
@@ -15273,18 +12814,18 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": -0.069037966399999998
+                    "leaf": -0.0189197715
                   },
                   {
                     "nodeid": 12,
-                    "leaf": -0.0028592306200000001
+                    "leaf": -0.0653274581
                   }
                 ]
               },
               {
                 "nodeid": 6,
                 "depth": 2,
-                "split": "born_usa",
+                "split": "race_ethnicity_Asian/Other",
                 "split_condition": 1,
                 "yes": 13,
                 "no": 14,
@@ -15292,11 +12833,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 13,
-                    "leaf": 0.039641592699999999
+                    "leaf": -0.0111437691
                   },
                   {
                     "nodeid": 14,
-                    "leaf": 0.000174996283
+                    "leaf": 0.0243095979
                   }
                 ]
               }
@@ -15308,20 +12849,16 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1919,
+        "split_condition": 1995,
         "yes": 1,
         "no": 2,
         "missing": 2,
         "children": [
           {
             "nodeid": 1,
-            "leaf": -0.068994134700000001
-          },
-          {
-            "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1998,
+            "split_condition": 1987,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -15330,51 +12867,25 @@ window.HCV_XGB_MODEL =
                 "nodeid": 3,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1987,
+                "split_condition": 1986,
                 "yes": 5,
                 "no": 6,
                 "missing": 6,
                 "children": [
                   {
                     "nodeid": 5,
-                    "leaf": 0.00153307826
+                    "leaf": 0.0018090891
                   },
                   {
                     "nodeid": 6,
-                    "leaf": 0.0171003211
+                    "leaf": -0.0581365302
                   }
                 ]
               },
               {
                 "nodeid": 4,
-                "leaf": -0.048841174699999997
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "incomepir",
-        "split_condition": 0.56999999300000004,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.49000000999999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
                 "depth": 2,
-                "split": "male",
+                "split": "race_ethnicity_Hispanic",
                 "split_condition": 1,
                 "yes": 7,
                 "no": 8,
@@ -15382,30 +12893,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.0105528273
+                    "leaf": 0.0290823113
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.019246082800000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "male",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.079547285999999995
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.021393770400000001
+                    "leaf": -0.0531604961
                   }
                 ]
               }
@@ -15413,428 +12905,7 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.62000000499999997,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "race_ethnicityWhite",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.0076090963600000004
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.057235222299999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.63999998599999997,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.091735355599999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0013445431800000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1993,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.86000001400000003,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.769999981,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00251123449
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.023591918900000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1991,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 1.1059483799999999e-05
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.055120717700000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1997,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.052812088299999997
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1998,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.063173882700000003
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.048752631999999997
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "race_ethnicityBlack",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.980000019,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.031026804799999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0025178648100000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.62000000499999997,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.013639058000000001
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0011506831500000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "born_usa",
-            "split_condition": 1,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.0299999993,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.15707074100000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0143951792
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.1800000700000002,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0024824761800000001
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0114590917
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1919,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "leaf": -0.067860581000000003
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1921,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 2.2400000100000002,
-                "yes": 5,
-                "no": 6,
-                "missing": 6,
-                "children": [
-                  {
-                    "nodeid": 5,
-                    "leaf": 0.0608752631
-                  },
-                  {
-                    "nodeid": 6,
-                    "leaf": -0.064929977099999994
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.87999999500000003,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0057839075999999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.00124283112
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "male",
-        "split_condition": 1,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.49000000999999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.44999998800000002,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0065810354399999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.037112027399999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.56999999300000004,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.077099166799999994
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.0062061171000000002
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 0.109999999,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.074588052899999993
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0149199096
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.34999999399999998,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.025954782999999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0036713478600000002
-                  }
-                ]
-              }
-            ]
+            "leaf": -0.0507725887
           }
         ]
       },
@@ -15851,210 +12922,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 1,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1954,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1932,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": -0.067183896899999998
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.0077932788999999997
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "race_ethnicityHispanic",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": -0.00060515425900000005
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.033456467099999998
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1952,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1929,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.020944355099999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": -0.0119877188
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1960,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.0129986098
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.0019851408399999999
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1926,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.4600000399999999,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.89999997600000003,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.0053222565900000003
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": -0.075073510400000001
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 3.4000001000000002,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.061763789499999999
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": -0.065142258999999994
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
-            "depth": 1,
-            "split": "birth_year",
-            "split_condition": 1928,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "leaf": -0.080934464900000003
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1929,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": 0.028831088899999999
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0012386856800000001
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1933,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 2.97000003,
+            "split_condition": 1948,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -16070,11 +12938,11 @@ window.HCV_XGB_MODEL =
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": 0.014982017699999999
+                    "leaf": -0.0809813514
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.041732218100000003
+                    "leaf": 0.0229186546
                   }
                 ]
               },
@@ -16082,18 +12950,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 4.9499998099999996,
+                "split_condition": 1.27999997,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.044129394000000002
+                    "leaf": -0.00330515881
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.062260199299999999
+                    "leaf": -0.0339765809
                   }
                 ]
               }
@@ -16103,7 +12971,7 @@ window.HCV_XGB_MODEL =
             "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1937,
+            "split_condition": 1998,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -16111,40 +12979,25 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 5,
                 "depth": 2,
-                "split": "race_ethnicityAsian/Other",
-                "split_condition": 1,
+                "split": "incomepir",
+                "split_condition": 1.16999996,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0069998912500000001
+                    "leaf": 0.00827495474
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.094696298200000001
+                    "leaf": 1.97629633e-05
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1938,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.086172006999999995
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": 0.00024872587500000002
-                  }
-                ]
+                "leaf": -0.0498360991
               }
             ]
           }
@@ -16153,126 +13006,17 @@ window.HCV_XGB_MODEL =
       {
         "nodeid": 0,
         "depth": 0,
-        "split": "incomepir",
-        "split_condition": 4.3800001100000001,
+        "split": "birth_year",
+        "split_condition": 1998,
         "yes": 1,
         "no": 2,
         "missing": 2,
         "children": [
           {
             "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 4.3499999000000003,
-            "yes": 3,
-            "no": 4,
-            "missing": 4,
-            "children": [
-              {
-                "nodeid": 3,
-                "depth": 2,
-                "split": "incomepir",
-                "split_condition": 4,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
-                "children": [
-                  {
-                    "nodeid": 7,
-                    "leaf": 0.00020915501199999999
-                  },
-                  {
-                    "nodeid": 8,
-                    "leaf": 0.019000818999999999
-                  }
-                ]
-              },
-              {
-                "nodeid": 4,
-                "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
-                "children": [
-                  {
-                    "nodeid": 9,
-                    "leaf": 0.41987261199999998
-                  },
-                  {
-                    "nodeid": 10,
-                    "leaf": 0.029218321700000001
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "nodeid": 2,
             "depth": 1,
             "split": "birth_year",
-            "split_condition": 1931,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1928,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.061705704799999997
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.112252824
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1964,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": -0.0048387115800000002
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.032043654499999998
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "nodeid": 0,
-        "depth": 0,
-        "split": "birth_year",
-        "split_condition": 1930,
-        "yes": 1,
-        "no": 2,
-        "missing": 2,
-        "children": [
-          {
-            "nodeid": 1,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.8799999999999999,
+            "split_condition": 1997,
             "yes": 3,
             "no": 4,
             "missing": 4,
@@ -16280,19 +13024,19 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.89999997600000003,
-                "yes": 7,
-                "no": 8,
-                "missing": 8,
+                "split": "birth_year",
+                "split_condition": 1968,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
                 "children": [
                   {
-                    "nodeid": 7,
-                    "leaf": 0.032886281599999997
+                    "nodeid": 5,
+                    "leaf": 0.00289905444
                   },
                   {
-                    "nodeid": 8,
-                    "leaf": -0.055494952899999998
+                    "nodeid": 6,
+                    "leaf": -0.00471740356
                   }
                 ]
               },
@@ -16300,18 +13044,18 @@ window.HCV_XGB_MODEL =
                 "nodeid": 4,
                 "depth": 2,
                 "split": "incomepir",
-                "split_condition": 4.9499998099999996,
-                "yes": 9,
-                "no": 10,
-                "missing": 10,
+                "split_condition": 0.879999995,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
                 "children": [
                   {
-                    "nodeid": 9,
-                    "leaf": 0.050516035399999999
+                    "nodeid": 7,
+                    "leaf": 0.146126807
                   },
                   {
-                    "nodeid": 10,
-                    "leaf": -0.059558343100000001
+                    "nodeid": 8,
+                    "leaf": -0.0476234294
                   }
                 ]
               }
@@ -16319,52 +13063,7 @@ window.HCV_XGB_MODEL =
           },
           {
             "nodeid": 2,
-            "depth": 1,
-            "split": "incomepir",
-            "split_condition": 1.6599999700000001,
-            "yes": 5,
-            "no": 6,
-            "missing": 6,
-            "children": [
-              {
-                "nodeid": 5,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1934,
-                "yes": 11,
-                "no": 12,
-                "missing": 12,
-                "children": [
-                  {
-                    "nodeid": 11,
-                    "leaf": -0.042625308000000001
-                  },
-                  {
-                    "nodeid": 12,
-                    "leaf": 0.0041331634900000002
-                  }
-                ]
-              },
-              {
-                "nodeid": 6,
-                "depth": 2,
-                "split": "birth_year",
-                "split_condition": 1936,
-                "yes": 13,
-                "no": 14,
-                "missing": 14,
-                "children": [
-                  {
-                    "nodeid": 13,
-                    "leaf": 0.019269416099999999
-                  },
-                  {
-                    "nodeid": 14,
-                    "leaf": -0.0069967866900000003
-                  }
-                ]
-              }
-            ]
+            "leaf": -0.049803175
           }
         ]
       },
@@ -16372,7 +13071,7 @@ window.HCV_XGB_MODEL =
         "nodeid": 0,
         "depth": 0,
         "split": "birth_year",
-        "split_condition": 1949,
+        "split_condition": 1963,
         "yes": 1,
         "no": 2,
         "missing": 2,
@@ -16380,7 +13079,7 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 1,
             "depth": 1,
-            "split": "race_ethnicityBlack",
+            "split": "race_ethnicity_Black",
             "split_condition": 1,
             "yes": 3,
             "no": 4,
@@ -16389,38 +13088,38 @@ window.HCV_XGB_MODEL =
               {
                 "nodeid": 3,
                 "depth": 2,
-                "split": "incomepir",
-                "split_condition": 0.58999997400000004,
+                "split": "birth_year",
+                "split_condition": 1955,
                 "yes": 7,
                 "no": 8,
                 "missing": 8,
                 "children": [
                   {
                     "nodeid": 7,
-                    "leaf": -0.095867954199999994
+                    "leaf": -0.0052890582
                   },
                   {
                     "nodeid": 8,
-                    "leaf": -0.0101190927
+                    "leaf": 0.00841915235
                   }
                 ]
               },
               {
                 "nodeid": 4,
                 "depth": 2,
-                "split": "born_usa",
-                "split_condition": 1,
+                "split": "birth_year",
+                "split_condition": 1960,
                 "yes": 9,
                 "no": 10,
                 "missing": 10,
                 "children": [
                   {
                     "nodeid": 9,
-                    "leaf": 0.042209461300000001
+                    "leaf": 0.0163230356
                   },
                   {
                     "nodeid": 10,
-                    "leaf": -0.0027982259600000002
+                    "leaf": -0.0205921177
                   }
                 ]
               }
@@ -16429,8 +13128,117 @@ window.HCV_XGB_MODEL =
           {
             "nodeid": 2,
             "depth": 1,
+            "split": "incomepir",
+            "split_condition": 2.77999997,
+            "yes": 5,
+            "no": 6,
+            "missing": 6,
+            "children": [
+              {
+                "nodeid": 5,
+                "depth": 2,
+                "split": "race_ethnicity_White",
+                "split_condition": 1,
+                "yes": 11,
+                "no": 12,
+                "missing": 12,
+                "children": [
+                  {
+                    "nodeid": 11,
+                    "leaf": -0.0074194246
+                  },
+                  {
+                    "nodeid": 12,
+                    "leaf": 0.00943206064
+                  }
+                ]
+              },
+              {
+                "nodeid": 6,
+                "depth": 2,
+                "split": "incomepir",
+                "split_condition": 4,
+                "yes": 13,
+                "no": 14,
+                "missing": 14,
+                "children": [
+                  {
+                    "nodeid": 13,
+                    "leaf": -0.0696148202
+                  },
+                  {
+                    "nodeid": 14,
+                    "leaf": -0.00674429536
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1982,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
             "split": "birth_year",
-            "split_condition": 1995,
+            "split_condition": 1936,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.00509686489
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": 0.0810416564
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_Asian/Other",
+                "split_condition": 1,
+                "yes": 9,
+                "no": 10,
+                "missing": 10,
+                "children": [
+                  {
+                    "nodeid": 9,
+                    "leaf": 0.000160737138
+                  },
+                  {
+                    "nodeid": 10,
+                    "leaf": -0.0208505727
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "depth": 1,
+            "split": "race_ethnicity_Hispanic",
+            "split_condition": 1,
             "yes": 5,
             "no": 6,
             "missing": 6,
@@ -16439,26 +13247,90 @@ window.HCV_XGB_MODEL =
                 "nodeid": 5,
                 "depth": 2,
                 "split": "birth_year",
-                "split_condition": 1993,
+                "split_condition": 1987,
                 "yes": 11,
                 "no": 12,
                 "missing": 12,
                 "children": [
                   {
                     "nodeid": 11,
-                    "leaf": 0.0028463883799999998
+                    "leaf": -0.0310135074
                   },
                   {
                     "nodeid": 12,
-                    "leaf": 0.037287123499999998
+                    "leaf": 0.00270859874
                   }
                 ]
               },
               {
                 "nodeid": 6,
-                "leaf": -0.0503646024
+                "leaf": -0.0536551848
               }
             ]
+          }
+        ]
+      },
+      {
+        "nodeid": 0,
+        "depth": 0,
+        "split": "birth_year",
+        "split_condition": 1995,
+        "yes": 1,
+        "no": 2,
+        "missing": 2,
+        "children": [
+          {
+            "nodeid": 1,
+            "depth": 1,
+            "split": "birth_year",
+            "split_condition": 1987,
+            "yes": 3,
+            "no": 4,
+            "missing": 4,
+            "children": [
+              {
+                "nodeid": 3,
+                "depth": 2,
+                "split": "birth_year",
+                "split_condition": 1980,
+                "yes": 5,
+                "no": 6,
+                "missing": 6,
+                "children": [
+                  {
+                    "nodeid": 5,
+                    "leaf": 0.000591475051
+                  },
+                  {
+                    "nodeid": 6,
+                    "leaf": -0.0199476667
+                  }
+                ]
+              },
+              {
+                "nodeid": 4,
+                "depth": 2,
+                "split": "race_ethnicity_Hispanic",
+                "split_condition": 1,
+                "yes": 7,
+                "no": 8,
+                "missing": 8,
+                "children": [
+                  {
+                    "nodeid": 7,
+                    "leaf": 0.0267444979
+                  },
+                  {
+                    "nodeid": 8,
+                    "leaf": -0.0527601019
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "nodeid": 2,
+            "leaf": -0.0506816618
           }
         ]
       }
@@ -16472,15 +13344,26 @@ window.HCV_XGB_MODEL =
     },
     "sex": {
       "type": "categorical",
-      "levels": ["Female", "Male"]
+      "levels": [
+        "Female",
+        "Male"
+      ]
     },
     "birthplace": {
       "type": "categorical",
-      "levels": ["Not_USA", "USA"]
+      "levels": [
+        "Not_USA",
+        "USA"
+      ]
     },
     "ethnicity": {
       "type": "categorical",
-      "levels": ["White", "Black", "Hispanic", "Asian/Other"]
+      "levels": [
+        "White",
+        "Black",
+        "Hispanic",
+        "Asian/Other"
+      ]
     },
     "incomepir": {
       "type": "number",
@@ -16493,87 +13376,107 @@ window.HCV_XGB_MODEL =
     "reference_set": "fixed_cycle_validation",
     "reference_label": "fixed-cycle validation cohort used in the paper",
     "reference_size": 20762,
-    "thresholds": [7.5335887334685393e-05, 0.00031636928795580519, 0.00061371291508243331, 0.0011837528805303831, 0.0022512732602956139, 0.0042425566462153978, 0.0094180106644144654, 0.017322560994677914, 0.035281853742135084],
+    "thresholds": [
+      9.408307914126242e-05,
+      0.0003569686604929879,
+      0.0006969304613595035,
+      0.0013001017208444108,
+      0.0023551993695245343,
+      0.004292388329903935,
+      0.009529955984765805,
+      0.01737246034891429,
+      0.03480499393878008
+    ],
     "stats": [
       {
         "decile": 1,
         "n": 2077,
-        "predicted_risk_mean": 3.7354984552141334e-05,
+        "predicted_risk_mean": 4.6268168602668995e-05,
         "observed_prevalence": 0.00048146364949446316,
-        "risk_min": 1.1399728667974023e-05,
-        "risk_max": 7.5335887334685393e-05
+        "risk_min": 1.2954831666013175e-05,
+        "risk_max": 9.408307914126242e-05,
+        "observed_cases": 1
       },
       {
         "decile": 2,
-        "n": 2077,
-        "predicted_risk_mean": 0.00019319413892766087,
-        "observed_prevalence": 0.0014443909484833895,
-        "risk_min": 7.5371608307957439e-05,
-        "risk_max": 0.00031636928795580519
+        "n": 2076,
+        "predicted_risk_mean": 0.00021475531149612277,
+        "observed_prevalence": 0.0009633911368015414,
+        "risk_min": 9.408307914126242e-05,
+        "risk_max": 0.0003569686604929879,
+        "observed_cases": 2
       },
       {
         "decile": 3,
         "n": 2076,
-        "predicted_risk_mean": 0.00045482896118042616,
-        "observed_prevalence": 0.00096339113680154141,
-        "risk_min": 0.00031636928795580519,
-        "risk_max": 0.00061371291508243331
+        "predicted_risk_mean": 0.0005104112095960937,
+        "observed_prevalence": 0.0024084778420038534,
+        "risk_min": 0.0003569686604929879,
+        "risk_max": 0.0006969304613595035,
+        "observed_cases": 5
       },
       {
         "decile": 4,
         "n": 2076,
-        "predicted_risk_mean": 0.00086694413550938358,
-        "observed_prevalence": 0.0024084778420038534,
-        "risk_min": 0.00061398412021376335,
-        "risk_max": 0.0011837528805303831
+        "predicted_risk_mean": 0.0009609660971250716,
+        "observed_prevalence": 0.001445086705202312,
+        "risk_min": 0.0006969304613595035,
+        "risk_max": 0.0013001017208444108,
+        "observed_cases": 3
       },
       {
         "decile": 5,
         "n": 2076,
-        "predicted_risk_mean": 0.0017195149936371926,
-        "observed_prevalence": 0.0014450867052023121,
-        "risk_min": 0.0011844619164248381,
-        "risk_max": 0.0022512732602956139
+        "predicted_risk_mean": 0.0017781641388519443,
+        "observed_prevalence": 0.001445086705202312,
+        "risk_min": 0.0013001017208444108,
+        "risk_max": 0.0023551993695245343,
+        "observed_cases": 3
       },
       {
         "decile": 6,
-        "n": 2076,
-        "predicted_risk_mean": 0.0031493071712984204,
-        "observed_prevalence": 0.0048169556840077067,
-        "risk_min": 0.0022556689924273406,
-        "risk_max": 0.0042425566462153978
+        "n": 2077,
+        "predicted_risk_mean": 0.0031809371329761015,
+        "observed_prevalence": 0.004814636494944632,
+        "risk_min": 0.0023551993695245343,
+        "risk_max": 0.004292388329903935,
+        "observed_cases": 10
       },
       {
         "decile": 7,
         "n": 2076,
-        "predicted_risk_mean": 0.0065573443771146534,
-        "observed_prevalence": 0.0081888246628131021,
-        "risk_min": 0.0042425566462153978,
-        "risk_max": 0.0094180106644144654
+        "predicted_risk_mean": 0.006480144028300169,
+        "observed_prevalence": 0.0072254335260115606,
+        "risk_min": 0.004294076980643284,
+        "risk_max": 0.009529955984765805,
+        "observed_cases": 15
       },
       {
         "decile": 8,
         "n": 2076,
-        "predicted_risk_mean": 0.012854083775983609,
-        "observed_prevalence": 0.01300578034682081,
-        "risk_min": 0.0094180106644144654,
-        "risk_max": 0.017322560994677914
+        "predicted_risk_mean": 0.012768930528206556,
+        "observed_prevalence": 0.015414258188824663,
+        "risk_min": 0.009530528146866103,
+        "risk_max": 0.01737246034891429,
+        "observed_cases": 32
       },
       {
         "decile": 9,
         "n": 2076,
-        "predicted_risk_mean": 0.023607703174505109,
+        "predicted_risk_mean": 0.02352075066331244,
         "observed_prevalence": 0.024084778420038536,
-        "risk_min": 0.017322560994677914,
-        "risk_max": 0.035281853742135084
+        "risk_min": 0.017375689001937134,
+        "risk_max": 0.03480499393878008,
+        "observed_cases": 50
       },
       {
         "decile": 10,
         "n": 2076,
-        "predicted_risk_mean": 0.078037956984121734,
-        "observed_prevalence": 0.07947976878612717,
-        "risk_min": 0.035304641262517644,
-        "risk_max": 0.21225603665350143
+        "predicted_risk_mean": 0.07846874838898085,
+        "observed_prevalence": 0.07803468208092486,
+        "risk_min": 0.034964505805827766,
+        "risk_max": 0.1963187163710882,
+        "observed_cases": 162
       }
     ]
   },
@@ -16582,17 +13485,19 @@ window.HCV_XGB_MODEL =
     "set": "Validation",
     "reference_label": "Fixed-cycle validation cohort used in the paper",
     "reference_set_size": 20762,
-    "auroc": 0.85987636736212647,
-    "pr_auc": 0.098880206232877202,
-    "sensitivity": 0.75971731448763247,
-    "specificity": 0.80755896283998241,
-    "brier": 0.14283548814156302,
-    "threshold": 0.55483788251876831
+    "auroc": 0.8589530738805865,
+    "pr_auc": 0.0920477089951294,
+    "sensitivity": 0.7491166077738516,
+    "specificity": 0.8075589628399824,
+    "brier": 0.0128563629204144,
+    "threshold": 0.5524681339999998
   },
   "paper_alignment": {
-    "validation_auroc_rebuilt": 0.85961383866988161,
-    "validation_auroc_reference": 0.85987636736212647,
-    "validation_auroc_abs_diff": 0.00026252869224485664
+    "validation_auroc_rebuilt": 0.8589530738805606,
+    "validation_auroc_reference": 0.8589530738805865,
+    "validation_auroc_abs_diff": 2.5868196473766147e-14,
+    "validation_pr_auc_rebuilt": 0.08931118793860932,
+    "validation_brier_calibrated_rebuilt": 0.012856362945765384
   }
 }
 ;
