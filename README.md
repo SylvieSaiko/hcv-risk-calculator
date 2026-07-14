@@ -2,6 +2,12 @@
 
 This folder contains a proof-of-concept static calculator for the demographic XGBoost model aligned to the paper's fixed-cycle primary analysis. The calculator is derived from NHANES data and is intended for research, education, and outreach-prioritization illustration. It has not been externally validated for standalone clinical decision-making.
 
+## Published paper
+
+This calculator accompanies our open-access paper:
+
+> Ding DG, Chen T, Sheng Y, Lin JSH, Yuan Y. [Development and validation of a machine learning model for evidence of prior or current HCV infection: a demographic screening approach for the US population](https://doi.org/10.1186/s12889-026-28311-2). *BMC Public Health*. Published July 1, 2026. https://doi.org/10.1186/s12889-026-28311-2
+
 ## Files
 
 - `scripts/export_xgb_web_artifact.R`: rebuilds the browser-ready XGB artifact from the `attempt_5` prespecified demographic dataset using the paper's fixed-cycle split, calibration, and validation-decile reference.
